@@ -10,12 +10,14 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 
 import { MtCompModule } from './Modules/mt-comp.module';
+import { CreateExamComponent } from './Components/Manager/create-exam/create-exam.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    CreateExamComponent,
     
   ],
   imports: [

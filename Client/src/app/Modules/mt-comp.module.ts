@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import {
   MatButtonModule, MatCardModule, MatToolbarModule, MatInputModule, MatListModule,
-  MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatPaginatorModule
+  MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatPaginatorModule,MatFormFieldModule,
+  MatOptionModule,MatSelectModule
 } from '@angular/material';
 import { MatSliderModule } from '@angular/material/slider';
 
@@ -13,7 +14,8 @@ import { MatSliderModule } from '@angular/material/slider';
   ],
     exports: [
       MatButtonModule, MatCardModule, MatToolbarModule, MatInputModule, MatListModule, MatCheckboxModule,
-      MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatPaginatorModule, MatSliderModule,
-  ]
+      MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatPaginatorModule, MatSliderModule,MatFormFieldModule,
+      MatOptionModule,MatSelectModule
+  ], 
 })
 export class MtCompModule { }

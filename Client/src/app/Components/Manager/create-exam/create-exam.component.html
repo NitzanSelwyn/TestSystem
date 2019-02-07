@@ -1,0 +1,38 @@
+<div class="main-exam">
+  <form class="example-container">
+    <mat-form-field>
+      <mat-select placeholder="Languge">
+        <mat-option *ngFor="let Languge of Languges" [value]="Languge.value">
+          {{Languge.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Test Name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Passing Grade">
+    </mat-form-field>
+
+    <mat-checkbox>Show Correct Answer After Submition</mat-checkbox>
+
+    <mat-form-field>
+      <input matInput placeholder="Header">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Message To Show On Succsess">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Message To Show On Failure">
+    </mat-form-field>
+  </form>
+
+  <div class="email-delivery">
+    <h1>asdsasad</h1>
+  </div>
+
+</div>
