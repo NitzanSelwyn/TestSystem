@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { MtCompModule } from './Modules/mt-comp.module';
 import { CreateExamComponent } from './Components/Manager/create-exam/create-exam.component';
+import { ManagerRegisterComponent } from './Components/Manager/manager-register/manager-register.component';
+import { ManagerLoginComponent } from './Components/Manager/manager-login/manager-login.component';
 
 
 
@@ -18,6 +20,8 @@ import { CreateExamComponent } from './Components/Manager/create-exam/create-exa
   declarations: [
     AppComponent,
     CreateExamComponent,
+    ManagerRegisterComponent,
+    ManagerLoginComponent,
     
   ],
   imports: [

@@ -6,7 +6,7 @@ const dbPool = new sql.ConnectionPool(config, err => {
     logger.log('error', "Can't create DB pool " + err + ' stack:' + err.stack);
     console.log(err);
   }
-  console.log('kk');
+  console.log('Connected');
 });
 
 module.exports = dbPool;
