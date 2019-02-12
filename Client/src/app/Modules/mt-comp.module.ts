@@ -7,6 +7,7 @@ import {
   MatOptionModule,MatSelectModule
 } from '@angular/material';
 import { MatSliderModule } from '@angular/material/slider';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { MatSliderModule } from '@angular/material/slider';
     exports: [
       MatButtonModule, MatCardModule, MatToolbarModule, MatInputModule, MatListModule, MatCheckboxModule,
       MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatPaginatorModule, MatSliderModule,MatFormFieldModule,
-      MatOptionModule,MatSelectModule
+      MatOptionModule,MatSelectModule,MatProgressSpinnerModule
   ], 
 })
 export class MtCompModule { }

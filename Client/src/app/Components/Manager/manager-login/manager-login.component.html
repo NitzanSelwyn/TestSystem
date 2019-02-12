@@ -1,3 +1,18 @@
-<p>
-  manager-login works!
-</p>
+<h4>Manager Login</h4>
+<div class="example-container">
+
+    <mat-form-field>
+      <input type="email" matInput placeholder="Email" [(ngModel)]="email" name="email" required>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Max 100 characters">
+      <input matInput #input maxlength="100" placeholder="Password" [(ngModel)]="password" type="password"
+        name="password" required>
+      <mat-hint align="end">{{input.value?.length || 0}}/100</mat-hint>
+    </mat-form-field>
+
+    <mat-spinner diameter="30" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+    
+    <button mat-raised-button (click)="login()" type="button" color="primary">Login</button>
+  
+</div>

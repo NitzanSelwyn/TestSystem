@@ -8,6 +8,6 @@ router.use(bodyParser.json());
 
 router.post('/Login', repo.Login);
 
-router.get('/Register', repo.Register)
+router.post('/Register', repo.Register)
 
 module.exports = router;
