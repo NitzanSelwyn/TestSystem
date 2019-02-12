@@ -1,22 +1,41 @@
 const dbPool = require('./dbContext');
-var sql = require('mssql');
+const sql = require('mssql');
 
-function executeInDB() {
-  const req = dbPool.request();
-  req.input('Email', sql.NVarChar(50), 'nitzansel@gmail.com');
-  req.input('Password', sql.NVarChar(50), '123456');
 
-  req.execute('spLogin', (err, data) => {
+exports.Login = (req,res) => {
+
+  const email = req.body.Email;
+  const password = req.body.Password;
+
+  const dbReq = dbPool.request();
+  dbReq.input('Email', sql.NVarChar(50),email);
+  dbReq.input('Password', sql.NVarChar(50), password);
+
+  dbReq.execute('spLogin', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'getuserbyname'");
+      console.log('error', "Execution error calling 'Login'");
     } else {
-      console.log(data.recordset);
+      res.send(data.recordset);
     }
   });
 }
 
+exports.Register = (req,res) => {
 
+  const email = req.body.Email;
+  const password = req.body.Password;
+  const fullName = req.body.FullName
+  const dbReq = dbPool.request();
 
-module.exports = {
-  executeInDB
-};
+  dbReq.input('Email', sql.NVarChar(50), email);
+  dbReq.input('Password', sql.NVarChar(50), password);
+  dbReq.input('FullName', sql.NVarChar(50), fullName);
+
+  dbReq.execute('spRegisterAdmin', (err, data) => {
+    if (err) {
+      console.log('error', "Execution error calling 'getuserbyname'");
+    } else {
+      res.send(data.recordset);
+    }
+  });
+}

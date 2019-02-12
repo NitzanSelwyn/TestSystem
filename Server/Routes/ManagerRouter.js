@@ -6,8 +6,8 @@ const router = express.Router();
 
 router.use(bodyParser.json());
 
-router.get('/Login', (req, res) => {
-  repo.executeInDB();
-});
+router.post('/Login', repo.Login);
+
+router.get('/Register', repo.Register)
 
 module.exports = router;
