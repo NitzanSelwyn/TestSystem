@@ -1,13 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const repo = require('../Dal/managerRepository');
+const managerController = require('../Controller/Manager/managerController')
 
 const router = express.Router();
 
 router.use(bodyParser.json());
 
-router.get('/Login', (req, res) => {
-  repo.executeInDB();
-});
+router.post('/Login', repo.Login);
+
+router.post('/Register', repo.Register)
 
 module.exports = router;

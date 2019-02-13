@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "joi": "^14.3.1",
     "jwt-simple": "^0.5.5",
     "mssql": "^4.3.1",
-    "nodemon": "^1.18.9"
+    "nodemailer": "^5.1.1",
+    "nodemon": "^1.18.10"
   }
 }
