@@ -16,7 +16,9 @@ import { ShowOnDirtyErrorStateMatcher, ErrorStateMatcher } from '@angular/materi
 import { AuthenticationService } from './Services/authentication.service';
 import { ManagerRegisterComponent } from './Components/Manager/manager-register/manager-register.component';
 
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './Components/navbar/navbar.component';
+import { ManagerMainComponent } from './Components/Manager/manager-main/manager-main.component'; 
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     CreateExamComponent,
     ManagerLoginComponent,
     ManagerRegisterComponent,
+    NavbarComponent,
+    ManagerMainComponent,
     
   ],
   imports: [

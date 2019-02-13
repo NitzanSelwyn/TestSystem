@@ -1,3 +1,23 @@
-<p>
-  manager-register works!
-</p>
+<h4>Manager Register</h4>
+<div class="example-container"> 
+    <mat-form-field>
+        <input matInput placeholder="Email" [(ngModel)]="email" name="email" type="email" />
+      </mat-form-field>
+      
+      <mat-form-field>
+        <input matInput placeholder="Full Name" [(ngModel)]="fullName" name="fullName" />
+      </mat-form-field>
+      
+      <mat-form-field>
+        <input matInput placeholder="Password" [(ngModel)]="password" name="password" type="password" />
+      </mat-form-field>
+      
+      <mat-form-field>
+        <input matInput placeholder="Confirm Password" [(ngModel)]="confirmPassword" type="password" name="confirmPassword"
+          required>
+      </mat-form-field>
+      
+      
+      <button mat-raised-button (click)="register()" type="button" color="primary">Register</button>
+      <mat-spinner diameter="30" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+</div>

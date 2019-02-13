@@ -2,13 +2,13 @@ const dbPool = require('./dbContext');
 const sql = require('mssql');
 
 
-exports.Login = (req,res) => {
+exports.Login = (req, res) => {
 
   const email = req.body.email;
   const password = req.body.password;
 
   const dbReq = dbPool.request();
-  dbReq.input('Email', sql.NVarChar(50),email);
+  dbReq.input('Email', sql.NVarChar(50), email);
   dbReq.input('Password', sql.NVarChar(50), password);
 
   dbReq.execute('spLogin', (err, data) => {
@@ -16,7 +16,6 @@ exports.Login = (req,res) => {
       console.log('error', "Execution error calling 'Login'");
     } else {
       console.log(data.recordset)
-
       res.send(data.recordset);
     }
   });
@@ -24,9 +23,9 @@ exports.Login = (req,res) => {
 
 exports.Register = (req,res) => {
 
-  const email = req.body.Email;
-  const password = req.body.Password;
-  const fullName = req.body.FullName
+  const email = req.body.email;
+  const password = req.body.password;
+  const fullName = req.body.name
   const dbReq = dbPool.request();
 
   dbReq.input('Email', sql.NVarChar(100), email);
