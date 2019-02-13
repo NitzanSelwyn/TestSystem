@@ -11,4 +11,6 @@ router.post('/Login', repo.Login);
 
 router.post('/Register', repo.Register)
 
+router.post('/GetManagerOrganization', repo.GetManagerOrganizations)
+
 module.exports = router;
