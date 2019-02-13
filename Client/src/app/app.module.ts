@@ -18,7 +18,8 @@ import { ManagerRegisterComponent } from './Components/Manager/manager-register/
 
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './Components/navbar/navbar.component';
-import { ManagerMainComponent } from './Components/Manager/manager-main/manager-main.component'; 
+import { ManagerMainComponent } from './Components/Manager/manager-main/manager-main.component';
+import { OrganizationMainComponent } from './Components/Manager/organization-main/organization-main.component'; 
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ManagerMainComponent } from './Components/Manager/manager-main/manager-
     ManagerRegisterComponent,
     NavbarComponent,
     ManagerMainComponent,
+    OrganizationMainComponent,
     
   ],
   imports: [

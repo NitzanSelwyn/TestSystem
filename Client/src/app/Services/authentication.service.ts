@@ -11,25 +11,30 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   AdminRegiser(email: string, password: string, name: string) {
-    return this.http.post<any>('http://localhost:3000/api/manager/register', { email, password,name })
+    return this.http.post<any>('http://localhost:3000/api/manager/register', { email, password, name })
   }
 
   AdminLogin(email: string, password: string): Observable<any> {
     return this.http.post<any>('http://localhost:3000/api/manager/login', { email, password })
   }
 
-  GetUserLoggedIn(){
+  GetUserLoggedIn() {
     const user = localStorage.getItem(environment.currentUserStorageKey);
     return JSON.parse(user);
   }
 
-   isAuthenticated() {
+  isAuthenticated() {
     return !!localStorage.getItem(environment.currentUserStorageKey);
   }
 
-  GetManagerOrganizations(): Observable<any>{
+  GetManagerOrganizations(): Observable<any> {
     const user = this.GetUserLoggedIn();
-    return this.http.post<any>('http://localhost:3000/api/manager/GetManagerOrganization',{Email: user.Email})
+    return this.http.post<any>('http://localhost:3000/api/manager/GetManagerOrganization', { Email: user.Email })
   }
+
+  GetSubjectsByOrganizationId(id): Observable<any> {
+    return this.http.post<any>('http://localhost:3000/api/manager/GetSubjectsByOrganizationId', { Id: id })
+  }
+
 
 }

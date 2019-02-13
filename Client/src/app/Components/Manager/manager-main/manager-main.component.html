@@ -5,6 +5,6 @@
 <mat-spinner diameter="30" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
 
 <div class="main-exam" *ngFor="let Organization of Organizations">
-  <button mat-raised-button (click)="nextPage(Organization.OrganizationId)" type="button"
+  <button mat-raised-button (click)='nextPage(Organization.OrganizationId)' type="button"
     color="primary">{{Organization.Name}}</button>
 </div>

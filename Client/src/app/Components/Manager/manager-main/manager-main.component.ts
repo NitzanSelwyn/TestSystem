@@ -21,8 +21,12 @@ export class ManagerMainComponent implements OnInit {
 
       this.showSpinner = false;
       this.Organizations = data;
-      
+
     });
   }
 
+  nextPage(id){
+    this.router.navigate(['/organizationmain',{id: id}]);
+  }
 }
+

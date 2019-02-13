@@ -13,4 +13,7 @@ router.post('/Register', repo.Register)
 
 router.post('/GetManagerOrganization', repo.GetManagerOrganizations)
 
+router.post('/GetSubjectsByOrganizationId', repo.GetSubjectsByOrganizationId)
+
+
 module.exports = router;

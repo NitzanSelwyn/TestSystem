@@ -59,3 +59,19 @@ exports.GetManagerOrganizations = (req, res) => {
     }
   });
 }
+
+exports.GetSubjectsByOrganizationId = (req,res) =>{
+  const id = req.body.Id;
+
+  const dbReq = dbPool.request();
+  dbReq.input('OrganizationId', sql.Int(), id);
+
+  dbReq.execute('spGetSubjectsByOrganizationId', (err, data) => {
+    if (err) {
+      console.log('error', "Execution error calling 'Register'");
+    } else {
+      console.log(data.recordset)
+      res.send(data.recordset);
+    }
+  });
+}
