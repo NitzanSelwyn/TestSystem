@@ -11,8 +11,9 @@ import { timingSafeEqual } from 'crypto';
 export class OrganizationMainComponent implements OnInit {
 
   id:string;
-  constructor(private route:ActivatedRoute, private authService: AuthenticationService ) { }
   showSpinner = false;
+  Subjects:any[]
+  constructor(private route:ActivatedRoute, private authService: AuthenticationService ) { }
   ngOnInit() {
     this.showSpinner = true;
     this.route.paramMap.subscribe(params2=>{
@@ -21,7 +22,7 @@ export class OrganizationMainComponent implements OnInit {
       this.authService.GetSubjectsByOrganizationId(id).subscribe((data)=>{
         this.showSpinner = false;
         console.log(data);
-
+        this.Subjects = data;
       })
     })
   }

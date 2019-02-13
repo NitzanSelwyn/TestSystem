@@ -1,4 +1,9 @@
-
 <mat-spinner diameter="30" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
 
-{{id}}
+<mat-form-field>
+    <mat-select placeholder="Subject">
+        <mat-option *ngFor="let Subject of Subjects" [value]="Subject.Name">
+            {{Subject.Name}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
