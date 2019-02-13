@@ -1,3 +1,10 @@
-<p>
-  manager-main works!
-</p>
+<h4>Main Manager</h4>
+
+<h4>Organization You Are A Part Of</h4>
+
+<mat-spinner diameter="30" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+
+<div class="main-exam" *ngFor="let Organization of Organizations">
+  <button mat-raised-button (click)="nextPage(Organization.OrganizationId)" type="button"
+    color="primary">{{Organization.Name}}</button>
+</div>

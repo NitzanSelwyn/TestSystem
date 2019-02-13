@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
   selector: 'app-manager-main',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagerMainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService) { }
+
+  Organizations: any[];
+  showSpinner = false;
 
   ngOnInit() {
+    this.showSpinner = true;
+
+    this.authService.GetManagerOrganizations().subscribe((data) => {
+
+      this.showSpinner = false;
+      this.Organizations = data;
+      
+    });
   }
 
 }

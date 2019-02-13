@@ -27,4 +27,9 @@ export class AuthenticationService {
     return !!localStorage.getItem(environment.currentUserStorageKey);
   }
 
+  GetManagerOrganizations(): Observable<any>{
+    const user = this.GetUserLoggedIn();
+    return this.http.post<any>('http://localhost:3000/api/manager/GetManagerOrganization',{Email: user.Email})
+  }
+
 }

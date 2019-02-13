@@ -44,7 +44,8 @@ exports.Register = (req, res) => {
 
 exports.GetManagerOrganizations = (req, res) => {
 
-  const email = req.body.email;
+  const email = req.body.Email;
+  
   const dbReq = dbPool.request();
 
   dbReq.input('Email', sql.NVarChar(100), email);
