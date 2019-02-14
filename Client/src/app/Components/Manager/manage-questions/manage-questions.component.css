@@ -1,0 +1,7 @@
+.main-title{
+    display: flex;
+    flex-direction: row;
+}
+.organization{
+    color: orange;
+}

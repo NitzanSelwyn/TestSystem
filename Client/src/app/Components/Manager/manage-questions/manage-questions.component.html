@@ -1,0 +1,10 @@
+<div *ngIf='!showSpinner'>
+
+
+  <div class="main-title">
+      <h1>Questions For: </h1>
+      <h1 class="organization">{{subjectname}}</h1>
+  </div>
+</div>
+
+<mat-spinner diameter="300" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>

@@ -23,6 +23,7 @@ import { OrganizationMainComponent } from './Components/Manager/organization-mai
 import { LoadingScreenComponent } from './Components/loading-screen/loading-screen.component';
 import { LoadingScreenInterceptor } from './Services/loading.interceptor';
 import { LoadingScreenService } from './Services/loading-screen.service';
+import { ManageQuestionsComponent } from './Components/Manager/manage-questions/manage-questions.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { LoadingScreenService } from './Services/loading-screen.service';
     ManagerMainComponent,
     OrganizationMainComponent,
     LoadingScreenComponent,
+    ManageQuestionsComponent,
 
   ],
   imports: [

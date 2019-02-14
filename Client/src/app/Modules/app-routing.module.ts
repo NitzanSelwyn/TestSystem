@@ -5,13 +5,15 @@ import { ManagerLoginComponent } from '../Components/Manager/manager-login/manag
 import { CreateExamComponent } from '../Components/Manager/create-exam/create-exam.component';
 import { ManagerMainComponent } from '../Components/Manager/manager-main/manager-main.component';
 import { OrganizationMainComponent } from '../Components/Manager/organization-main/organization-main.component';
+import { ManageQuestionsComponent } from '../Components/Manager/manage-questions/manage-questions.component';
 
 const routes: Routes = [
   { path: 'managerregister', component: ManagerRegisterComponent },
   { path: 'managerlogin', component: ManagerLoginComponent },
   { path: 'createexam', component: CreateExamComponent },
   { path: 'managermain', component: ManagerMainComponent },
-  { path: 'organizationmain', component: OrganizationMainComponent }
+  { path: 'organizationmain', component: OrganizationMainComponent },
+  { path: 'managequestions', component: ManageQuestionsComponent }
 ];
 
 @NgModule({

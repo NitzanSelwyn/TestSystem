@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
@@ -10,12 +10,12 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 export class OrganizationMainComponent implements OnInit {
 
   id: string;
-  organizationName:string;
+  organizationName: string;
   showSpinner = false;
   Subjects: any[];
-  selectedValue:any;
- 
-  constructor(private route: ActivatedRoute, private authService: AuthenticationService) { }
+  selectedValue: any;
+
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService) { }
 
   ngOnInit() {
     this.showSpinner = true;
@@ -26,13 +26,19 @@ export class OrganizationMainComponent implements OnInit {
       this.organizationName = name;
       this.authService.GetSubjectsByOrganizationId(id).subscribe((data) => {
         this.Subjects = data;
-        this.showSpinner = false;      
+        this.showSpinner = false;
       })
     })
   }
 
-  selectedSubject(id){
-    console.log(id);
+  selectedSubject(subjectid) {
+    let subjectname = '';
+    this.Subjects.forEach(element => {
+      if (element.SubjectId == subjectid) {
+        subjectname = element.Name;
+      }
+    });
+    this.router.navigate(['/managequestions',{subjectid:subjectid, subjectname:subjectname}])
   }
 
 }
