@@ -13,8 +13,8 @@ export class OrganizationMainComponent implements OnInit {
   organizationName:string;
   showSpinner = false;
   Subjects: any[];
+  selectedValue:any;
  
-
   constructor(private route: ActivatedRoute, private authService: AuthenticationService) { }
 
   ngOnInit() {
@@ -29,6 +29,10 @@ export class OrganizationMainComponent implements OnInit {
         this.showSpinner = false;      
       })
     })
+  }
+
+  selectedSubject(id){
+    console.log(id);
   }
 
 }

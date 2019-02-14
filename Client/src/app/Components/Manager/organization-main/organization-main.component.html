@@ -6,12 +6,26 @@
     </div>
 
     <mat-form-field>
-        <mat-select placeholder="Subject">
-            <mat-option *ngFor="let Subject of Subjects" [value]="Subject.Name">
+        <mat-select placeholder="Subject" [(value)]="selectedValue">
+            <mat-option *ngFor="let Subject of Subjects" [value]='Subject.SubjectId'>
                 {{Subject.Name}}
             </mat-option>
         </mat-select>
     </mat-form-field>
 
+
+    <div class="container">
+
+        <button mat-raised-button type="button" color="primary" (click)='selectedSubject(selectedValue)'>Manage
+            Questions </button>
+
+        <button mat-raised-button type="button" color="primary">Manage Tests </button>
+
+        <button mat-raised-button type="button" color="primary">Reports </button>
+
+    </div>
+
 </div>
+
+
 <mat-spinner diameter="300" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
