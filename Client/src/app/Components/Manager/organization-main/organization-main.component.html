@@ -1,9 +1,17 @@
-<mat-spinner diameter="30" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+<div *ngIf='!showSpinner'>
 
-<mat-form-field>
-    <mat-select placeholder="Subject">
-        <mat-option *ngFor="let Subject of Subjects" [value]="Subject.Name">
-            {{Subject.Name}}
-        </mat-option>
-    </mat-select>
-</mat-form-field>
+    <div class="main-title">
+        <h1>Organization Name: </h1>
+        <h1 class="organization">{{organizationName}}</h1>
+    </div>
+
+    <mat-form-field>
+        <mat-select placeholder="Subject">
+            <mat-option *ngFor="let Subject of Subjects" [value]="Subject.Name">
+                {{Subject.Name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+</div>
+<mat-spinner diameter="300" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
