@@ -14,15 +14,15 @@
     <mat-table [dataSource]="dataSource" matSort>
 
       <!-- ID Column -->
-      <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-        <mat-cell *matCellDef="let row"> ID </mat-cell>
+      <ng-container matColumnDef="QuestionId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> QuestionId </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.QuestionId}} </mat-cell>
       </ng-container>
 
       <!-- Qustion Column -->
       <ng-container matColumnDef="Qustion">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Qustion </mat-header-cell>
-        <mat-cell *matCellDef="let row"> Qustion </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
       </ng-container>
 
       <!-- Last Update Column -->
@@ -33,8 +33,8 @@
 
       <!-- Qustion Type Column -->
       <ng-container matColumnDef="QustionType">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Qustion Type </mat-header-cell>
-        <mat-cell *matCellDef="let row" > Qustion Type </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Is Multi? </mat-header-cell>
+        <mat-cell *matCellDef="let row" > {{row.IsMultyChoice}} </mat-cell>
       </ng-container>
 
       <!-- Number Tests Column -->
@@ -46,7 +46,11 @@
       <!-- Buttons Column -->
       <ng-container matColumnDef="Buttons">
         <mat-header-cell *matHeaderCellDef mat-sort-header>  </mat-header-cell>
-        <mat-cell *matCellDef="let row" > Buttons </mat-cell>
+        <mat-cell *matCellDef="let row" > 
+            <button mat-raised-button type="button" color="primary">Show </button>
+            <button mat-raised-button type="button" color="primary">Edit </button>
+            <button mat-raised-button type="button" color="primary">Delete </button>
+           </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
