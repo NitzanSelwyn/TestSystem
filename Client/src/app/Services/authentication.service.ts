@@ -24,8 +24,11 @@ export class AuthenticationService {
   }
 
   isAuthenticated() {
-    return !!localStorage.getItem(environment.currentUserStorageKey);
+    let token = localStorage.getItem(environment.currentUserStorageKey);
+    if (!token) return false;
+    return true;
   }
+
 
   GetManagerOrganizations(): Observable<any> {
     const user = this.GetUserLoggedIn();
@@ -34,6 +37,10 @@ export class AuthenticationService {
 
   GetSubjectsByOrganizationId(id): Observable<any> {
     return this.http.post<any>('http://localhost:3000/api/manager/GetSubjectsByOrganizationId', { Id: id })
+  }
+
+  GetQuestionBySubjectId(OrganizationId, SubjectId): Observable<any> {
+    return this.http.post<any>('http://localhost:3000/api/manager/GetQustionsbySubjectId', { OrganizationId: OrganizationId, SubjectId: SubjectId });
   }
 
 

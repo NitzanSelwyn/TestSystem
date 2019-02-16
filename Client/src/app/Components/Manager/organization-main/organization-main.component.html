@@ -7,7 +7,7 @@
 
     <mat-form-field>
         <mat-select placeholder="Subject" [(value)]="selectedValue">
-            <mat-option *ngFor="let Subject of Subjects" [value]='Subject.SubjectId'>
+            <mat-option *ngFor="let Subject of Subjects" [value]='Subject.SubjectId' require>
                 {{Subject.Name}}
             </mat-option>
         </mat-select>

@@ -18,7 +18,7 @@ export class ManagerLoginComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService) { }
 
   ngOnInit() {
-    // if(this.authService.isAuthenticated){
+    // if (!this.authService.isAuthenticated) {
     //   this.router.navigate(['/managermain'])
     // }
   }

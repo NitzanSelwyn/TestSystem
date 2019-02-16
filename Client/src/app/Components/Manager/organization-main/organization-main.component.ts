@@ -32,13 +32,17 @@ export class OrganizationMainComponent implements OnInit {
   }
 
   selectedSubject(subjectid) {
+    if(subjectid == undefined){
+      //TODO show the user a message that he have to chose a subject
+      return
+    }
     let subjectname = '';
     this.Subjects.forEach(element => {
       if (element.SubjectId == subjectid) {
         subjectname = element.Name;
       }
     });
-    this.router.navigate(['/managequestions',{subjectid:subjectid, subjectname:subjectname}])
+    this.router.navigate(['/managequestions',{subjectid:subjectid, subjectname:subjectname,organizationId:this.id}])
   }
 
 }

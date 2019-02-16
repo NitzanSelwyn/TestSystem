@@ -45,7 +45,7 @@ exports.Register = (req, res) => {
 exports.GetManagerOrganizations = (req, res) => {
 
   const email = req.body.Email;
-  
+
   const dbReq = dbPool.request();
 
   dbReq.input('Email', sql.NVarChar(100), email);
@@ -60,13 +60,31 @@ exports.GetManagerOrganizations = (req, res) => {
   });
 }
 
-exports.GetSubjectsByOrganizationId = (req,res) =>{
+exports.GetSubjectsByOrganizationId = (req, res) => {
   const id = req.body.Id;
 
   const dbReq = dbPool.request();
   dbReq.input('OrganizationId', sql.Int(), id);
 
   dbReq.execute('spGetSubjectsByOrganizationId', (err, data) => {
+    if (err) {
+      console.log('error', "Execution error calling 'Register'");
+    } else {
+      console.log(data.recordset)
+      res.send(data.recordset);
+    }
+  });
+}
+
+exports.GetQustionsbySubjectId = (req,res) =>{
+  const organizationId = req.body.OrganizationId;
+  const subjectId = req.body.SubjectId;
+
+  const dbReq = dbPool.request();
+  dbReq.input('SubjectId', sql.Int(), subjectId);
+  dbReq.input('OrganizationId', sql.Int(), organizationId);
+
+  dbReq.execute('spGetQuestionBySubjectId', (err, data) => {
     if (err) {
       console.log('error', "Execution error calling 'Register'");
     } else {
