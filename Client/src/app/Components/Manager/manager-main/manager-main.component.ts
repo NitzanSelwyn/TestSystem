@@ -18,15 +18,13 @@ export class ManagerMainComponent implements OnInit {
     this.showSpinner = true;
 
     this.authService.GetManagerOrganizations().subscribe((data) => {
-
       this.showSpinner = false;
       this.Organizations = data;
-
     });
   }
 
-  nextPage(id){
-    this.router.navigate(['/organizationmain',{id: id}]);
+  nextPage(id,name){
+    this.router.navigate(['/organizationmain',{id: id,name: name}]);
   }
 }
 

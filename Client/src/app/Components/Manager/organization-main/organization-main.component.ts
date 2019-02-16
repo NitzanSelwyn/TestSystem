@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
-import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-organization-main',
@@ -10,21 +9,40 @@ import { timingSafeEqual } from 'crypto';
 })
 export class OrganizationMainComponent implements OnInit {
 
-  id:string;
+  id: string;
+  organizationName: string;
   showSpinner = false;
-  Subjects:any[]
-  constructor(private route:ActivatedRoute, private authService: AuthenticationService ) { }
+  Subjects: any[];
+  selectedValue: any;
+
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService) { }
+
   ngOnInit() {
     this.showSpinner = true;
-    this.route.paramMap.subscribe(params2=>{
-      const id = params2.get('id');
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      const name = params.get('name');
       this.id = id;
-      this.authService.GetSubjectsByOrganizationId(id).subscribe((data)=>{
-        this.showSpinner = false;
-        console.log(data);
+      this.organizationName = name;
+      this.authService.GetSubjectsByOrganizationId(id).subscribe((data) => {
         this.Subjects = data;
+        this.showSpinner = false;
       })
     })
+  }
+
+  selectedSubject(subjectid) {
+    if(subjectid == undefined){
+      //TODO show the user a message that he have to chose a subject
+      return
+    }
+    let subjectname = '';
+    this.Subjects.forEach(element => {
+      if (element.SubjectId == subjectid) {
+        subjectname = element.Name;
+      }
+    });
+    this.router.navigate(['/managequestions',{subjectid:subjectid, subjectname:subjectname,organizationId:this.id}])
   }
 
 }

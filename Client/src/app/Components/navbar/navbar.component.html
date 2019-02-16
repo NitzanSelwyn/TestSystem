@@ -1,5 +1,5 @@
 <mat-toolbar mat-tab-nav-bar backgroundColor="primary">
   <button mat-button *ngIf='authService.isAuthenticated' routerLink="managerlogin">Manager Login</button>
-  <button mat-button *ngIf='!authService.isAuthenticated' routerLink="managerregister">Manager Register</button>
+  <button mat-button *ngIf='authService.isAuthenticated' routerLink="managerregister">Manager Register</button>
   <button mat-button *ngIf='authService.isAuthenticated' routerLink="managermain">Main</button>
 </mat-toolbar>

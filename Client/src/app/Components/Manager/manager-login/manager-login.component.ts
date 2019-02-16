@@ -18,7 +18,7 @@ export class ManagerLoginComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService) { }
 
   ngOnInit() {
-    // if(this.authService.isAuthenticated){
+    // if (!this.authService.isAuthenticated) {
     //   this.router.navigate(['/managermain'])
     // }
   }
@@ -32,10 +32,7 @@ export class ManagerLoginComponent implements OnInit {
       this.showSpinner = false;
 
       const user = { "Name": data[0].FullName, "Email": data[0].Email }
-
-      // localStorage.setItem('AdminName',data[0].FullName);
-      // localStorage.setItem('AdminEmail',data[0].Email);
-
+      
       localStorage.setItem(environment.currentUserStorageKey, JSON.stringify(user));
 
       if(this.authService.isAuthenticated()){

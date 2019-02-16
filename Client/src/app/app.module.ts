@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { MtCompModule } from './Modules/mt-comp.module';
@@ -16,10 +16,14 @@ import { ShowOnDirtyErrorStateMatcher, ErrorStateMatcher } from '@angular/materi
 import { AuthenticationService } from './Services/authentication.service';
 import { ManagerRegisterComponent } from './Components/Manager/manager-register/manager-register.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { ManagerMainComponent } from './Components/Manager/manager-main/manager-main.component';
-import { OrganizationMainComponent } from './Components/Manager/organization-main/organization-main.component'; 
+import { OrganizationMainComponent } from './Components/Manager/organization-main/organization-main.component';
+import { LoadingScreenComponent } from './Components/loading-screen/loading-screen.component';
+import { LoadingScreenInterceptor } from './Services/loading.interceptor';
+import { LoadingScreenService } from './Services/loading-screen.service';
+import { ManageQuestionsComponent } from './Components/Manager/manage-questions/manage-questions.component';
 
 
 @NgModule({
@@ -31,7 +35,9 @@ import { OrganizationMainComponent } from './Components/Manager/organization-mai
     NavbarComponent,
     ManagerMainComponent,
     OrganizationMainComponent,
-    
+    LoadingScreenComponent,
+    ManageQuestionsComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -41,11 +47,13 @@ import { OrganizationMainComponent } from './Components/Manager/organization-mai
     MtCompModule,
     ReactiveFormsModule,
     HttpClientModule
-    
+
   ],
   providers: [
-    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingScreenInterceptor, multi: true },
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
     AuthenticationService,
+    LoadingScreenService
   ],
   bootstrap: [AppComponent]
 })

@@ -15,5 +15,8 @@ router.post('/GetManagerOrganization', repo.GetManagerOrganizations)
 
 router.post('/GetSubjectsByOrganizationId', repo.GetSubjectsByOrganizationId)
 
+router.post('/GetQustionsbySubjectId', repo.GetQustionsbySubjectId)
+
+
 
 module.exports = router;
