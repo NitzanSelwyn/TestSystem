@@ -1,14 +1,20 @@
-<div mat-dialog-content>
-    <h4>TEST</h4>
-    {{data.datakey}}
+<div mat-dialog-content *ngIf='!showSpinner'>
+    <h1>{{answers[0].QuestionTitle}}</h1>
+    <h3>{{answers[0].TextBelow}}</h3>
     <div *ngFor='let answer of answers'>
         <ol>
             <div>
-                <ul *ngIf='answer.IsCorrect; else NotCorrect' class='correct-answer'>{{answer.Title}}</ul>
+                <ul *ngIf='answer.IsCorrect; else NotCorrect' class='correct-answer'>                  
+                    {{answer.Title}}
+                </ul>
                 <ng-template #NotCorrect>
-                    <ul>{{answer.Title}}</ul>
+                    <ul>
+                        {{answer.Title}}
+                    </ul>
                 </ng-template>
             </div>
         </ol>
     </div>
 </div>
+
+<mat-spinner diameter="300" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
