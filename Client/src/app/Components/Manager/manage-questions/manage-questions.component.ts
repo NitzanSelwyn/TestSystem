@@ -53,6 +53,10 @@ export class ManageQuestionsComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
+  showQuestion(id){
+    console.log(id);
+  }
+
 }
 
 export interface Questions {

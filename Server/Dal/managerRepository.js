@@ -1,5 +1,7 @@
 const dbPool = require('./dbContext');
 const sql = require('mssql');
+const jwt = require('jsonwebtoken')
+const config = require('../Config/config');
 
 
 exports.Login = (req, res) => {
@@ -15,8 +17,11 @@ exports.Login = (req, res) => {
     if (err) {
       console.log('error', "Execution error calling 'Login'");
     } else {
-      console.log(data.recordset)
-      res.send(data.recordset);
+
+      jwt.sign(data.recordset[0], config.jwtSecret, (err, token) => {
+        console.log(token);
+        res.send({token:token,user:data.recordset})
+      })
     }
   });
 }
@@ -36,7 +41,7 @@ exports.Register = (req, res) => {
     if (err) {
       console.log('error', "Execution error calling 'Register'");
     } else {
-      console.log(data.recordset)
+
       res.send(data.recordset);
     }
   });
@@ -54,7 +59,7 @@ exports.GetManagerOrganizations = (req, res) => {
     if (err) {
       console.log('error', "Execution error calling 'Register'");
     } else {
-      console.log(data.recordset)
+
       res.send(data.recordset);
     }
   });
@@ -70,13 +75,13 @@ exports.GetSubjectsByOrganizationId = (req, res) => {
     if (err) {
       console.log('error', "Execution error calling 'Register'");
     } else {
-      console.log(data.recordset)
+
       res.send(data.recordset);
     }
   });
 }
 
-exports.GetQustionsbySubjectId = (req,res) =>{
+exports.GetQustionsbySubjectId = (req, res) => {
   const organizationId = req.body.OrganizationId;
   const subjectId = req.body.SubjectId;
 
@@ -88,7 +93,7 @@ exports.GetQustionsbySubjectId = (req,res) =>{
     if (err) {
       console.log('error', "Execution error calling 'Register'");
     } else {
-      console.log(data.recordset)
+
       res.send(data.recordset);
     }
   });
