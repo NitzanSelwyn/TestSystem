@@ -8,4 +8,5 @@ const managerRouter = require('./Routes/ManagerRouter');
 app.use(cores());
 app.use('/api/manager', managerRouter);
 
+
 module.exports = app;

@@ -29,6 +29,9 @@ export class AuthenticationService {
     return true;
   }
 
+  GetQuestionAnswersById(id) :Observable<any>{
+    return this.http.post<any>('http://localhost:3000/api/manager/GetQuestionsAnswersById', { Id: id })
+  }
 
   GetManagerOrganizations(): Observable<any> {
     const user = this.GetUserLoggedIn();
@@ -36,6 +39,7 @@ export class AuthenticationService {
   }
 
   GetSubjectsByOrganizationId(id): Observable<any> {
+    //let options = this.GetOptions(token)
     return this.http.post<any>('http://localhost:3000/api/manager/GetSubjectsByOrganizationId', { Id: id })
   }
 
@@ -43,5 +47,13 @@ export class AuthenticationService {
     return this.http.post<any>('http://localhost:3000/api/manager/GetQustionsbySubjectId', { OrganizationId: OrganizationId, SubjectId: SubjectId });
   }
 
-
+  private GetOptions(token: string) {
+    return {
+      headers: new HttpHeaders
+        ({
+          'Content-Type': 'application/json',
+          'Authorization': 'bearer ' + token
+        })
+    };
+  }
 }

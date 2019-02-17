@@ -31,7 +31,7 @@ export class ManagerLoginComponent implements OnInit {
       console.log(data);
       this.showSpinner = false;
 
-      const user = { "Name": data[0].FullName, "Email": data[0].Email }
+      const user = { "Name": data.user[0].FullName, "Email": data.user[0].Email,"Token": data.token }
       
       localStorage.setItem(environment.currentUserStorageKey, JSON.stringify(user));
 
