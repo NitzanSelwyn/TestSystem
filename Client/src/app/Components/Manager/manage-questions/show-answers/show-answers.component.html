@@ -3,7 +3,12 @@
     {{data.datakey}}
     <div *ngFor='let answer of answers'>
         <ol>
-            <ul>{{answer.Title}}</ul>
+            <div>
+                <ul *ngIf='answer.IsCorrect; else NotCorrect' class='correct-answer'>{{answer.Title}}</ul>
+                <ng-template #NotCorrect>
+                    <ul>{{answer.Title}}</ul>
+                </ng-template>
+            </div>
         </ol>
     </div>
 </div>

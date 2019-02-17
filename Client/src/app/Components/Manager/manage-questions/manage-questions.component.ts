@@ -19,8 +19,6 @@ export class ManageQuestionsComponent implements OnInit {
   displayedColumns = ['QuestionId', 'Qustion', 'LastUpdate', 'QustionType', 'NumberTests', 'Buttons'];
   dataSource: MatTableDataSource<Questions>;
 
-
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
