@@ -24,6 +24,7 @@ import { LoadingScreenComponent } from './Components/loading-screen/loading-scre
 import { LoadingScreenInterceptor } from './Services/loading.interceptor';
 import { LoadingScreenService } from './Services/loading-screen.service';
 import { ManageQuestionsComponent } from './Components/Manager/manage-questions/manage-questions.component';
+import { ShowAnswersComponent } from './Components/Manager/manage-questions/show-answers/show-answers.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { ManageQuestionsComponent } from './Components/Manager/manage-questions/
     OrganizationMainComponent,
     LoadingScreenComponent,
     ManageQuestionsComponent,
+    ShowAnswersComponent,
 
   ],
   imports: [
@@ -55,6 +57,7 @@ import { ManageQuestionsComponent } from './Components/Manager/manage-questions/
     AuthenticationService,
     LoadingScreenService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[ShowAnswersComponent]
 })
 export class AppModule { }

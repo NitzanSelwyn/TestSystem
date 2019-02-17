@@ -29,6 +29,9 @@ export class AuthenticationService {
     return true;
   }
 
+  GetQuestionAnswersById(id) :Observable<any>{
+    return this.http.post<any>('http://localhost:3000/api/manager/GetQuestionsAnswersById', { Id: id })
+  }
 
   GetManagerOrganizations(): Observable<any> {
     const user = this.GetUserLoggedIn();

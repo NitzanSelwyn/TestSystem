@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { PageEvent, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatDialog } from '@angular/material';
+import { ShowAnswersComponent } from './show-answers/show-answers.component';
 
 @Component({
   selector: 'app-manage-questions',
@@ -16,13 +18,14 @@ export class ManageQuestionsComponent implements OnInit {
 
   displayedColumns = ['QuestionId', 'Qustion', 'LastUpdate', 'QustionType', 'NumberTests', 'Buttons'];
   dataSource: MatTableDataSource<Questions>;
-  questions: Questions[] = [];
+
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.showSpinner = true;
@@ -33,16 +36,14 @@ export class ManageQuestionsComponent implements OnInit {
       this.id = subjectid;
       this.subjectname = name;
       this.authService.GetQuestionBySubjectId(organizationId, subjectid).subscribe((data) => {
-        console.log(data);
-        this.questions = data;
-        this.dataSource = new MatTableDataSource(this.questions);
-
+        this.dataSource = new MatTableDataSource(data);
+        this.tryTest();
         this.showSpinner = false;
       });
     })
   }
 
-  ngAfterViewInit() {
+  tryTest() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -53,8 +54,13 @@ export class ManageQuestionsComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  showQuestion(id){
-    console.log(id);
+  //opens a dialog modal and shows the answers of the questions
+  showQuestion(id) {
+    this.dialog.open(ShowAnswersComponent, {
+      data: {
+        datakey: id
+      }
+    });
   }
 
 }

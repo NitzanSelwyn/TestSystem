@@ -98,3 +98,20 @@ exports.GetQustionsbySubjectId = (req, res) => {
     }
   });
 }
+
+exports.GetQuestionsAnswersById = (req,res) =>{
+  const questionId = req.body.Id;
+
+  const dbReq = dbPool.request();
+
+  dbReq.input('QuestionId', sql.Int(), questionId);
+
+  dbReq.execute('spGetQuestionAnswersByQuestionId', (err, data) => {
+    if (err) {
+      console.log('error', "Execution error calling 'Register'");
+    } else {
+      res.send(data.recordset);
+    }
+  });
+
+}
