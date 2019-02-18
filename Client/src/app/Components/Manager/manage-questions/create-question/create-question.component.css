@@ -1,0 +1,8 @@
+.main-continar{
+    display: flex;
+    flex-direction: column;
+}
+.answers-continer{
+    display: flex;
+    flex-direction: row;
+}

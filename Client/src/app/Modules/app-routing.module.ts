@@ -6,6 +6,7 @@ import { CreateExamComponent } from '../Components/Manager/create-exam/create-ex
 import { ManagerMainComponent } from '../Components/Manager/manager-main/manager-main.component';
 import { OrganizationMainComponent } from '../Components/Manager/organization-main/organization-main.component';
 import { ManageQuestionsComponent } from '../Components/Manager/manage-questions/manage-questions.component';
+import { CreateQuestionComponent } from '../Components/Manager/manage-questions/create-question/create-question.component';
 
 const routes: Routes = [
   { path: 'managerregister', component: ManagerRegisterComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'createexam', component: CreateExamComponent },
   { path: 'managermain', component: ManagerMainComponent },
   { path: 'organizationmain', component: OrganizationMainComponent },
-  { path: 'managequestions', component: ManageQuestionsComponent }
+  { path: 'managequestions', component: ManageQuestionsComponent },
+  { path: 'createquestion', component: CreateQuestionComponent },
 ];
 
 @NgModule({

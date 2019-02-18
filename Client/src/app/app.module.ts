@@ -25,6 +25,7 @@ import { LoadingScreenInterceptor } from './Services/loading.interceptor';
 import { LoadingScreenService } from './Services/loading-screen.service';
 import { ManageQuestionsComponent } from './Components/Manager/manage-questions/manage-questions.component';
 import { ShowAnswersComponent } from './Components/Manager/manage-questions/show-answers/show-answers.component';
+import { CreateQuestionComponent } from './Components/Manager/manage-questions/create-question/create-question.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { ShowAnswersComponent } from './Components/Manager/manage-questions/show
     LoadingScreenComponent,
     ManageQuestionsComponent,
     ShowAnswersComponent,
+    CreateQuestionComponent,
 
   ],
   imports: [

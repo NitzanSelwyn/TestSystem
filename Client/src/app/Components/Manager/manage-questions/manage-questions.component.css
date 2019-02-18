@@ -5,3 +5,11 @@
 .organization{
     color: orange;
 }
+.question-table{
+    display: flex;
+    flex-direction: column;
+}
+.lower-buttons{
+    display: flex;
+    justify-content: space-between;
+}

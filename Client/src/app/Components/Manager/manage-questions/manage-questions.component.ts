@@ -4,7 +4,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { PageEvent, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MatDialog } from '@angular/material';
 import { ShowAnswersComponent } from './show-answers/show-answers.component';
-
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-manage-questions',
   templateUrl: './manage-questions.component.html',
@@ -13,8 +13,9 @@ import { ShowAnswersComponent } from './show-answers/show-answers.component';
 export class ManageQuestionsComponent implements OnInit {
 
   showSpinner = false;
-  id: string;
+  subjectid: string;
   subjectname: string;
+  organizationId:string;
 
   displayedColumns = ['QuestionId', 'Qustion', 'LastUpdate', 'QustionType', 'NumberTests', 'Buttons'];
   dataSource: MatTableDataSource<Questions>;
@@ -23,7 +24,7 @@ export class ManageQuestionsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog, private location: Location) { }
 
   ngOnInit() {
     this.showSpinner = true;
@@ -31,8 +32,9 @@ export class ManageQuestionsComponent implements OnInit {
       const subjectid = params.get('subjectid');
       const name = params.get('subjectname');
       const organizationId = params.get('organizationId');
-      this.id = subjectid;
+      this.subjectid = subjectid;
       this.subjectname = name;
+      this.organizationId = organizationId;
       this.authService.GetQuestionBySubjectId(organizationId, subjectid).subscribe((data) => {
         this.dataSource = new MatTableDataSource(data);
         this.tryTest();
@@ -44,6 +46,14 @@ export class ManageQuestionsComponent implements OnInit {
   tryTest() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  backClicked() {
+    this.location.back();
+  }
+
+  moveToCreateQuestion(){
+    this.router.navigate(['/createquestion',{organizationId:this.organizationId,subjectid:this.subjectid}])
   }
 
   applyFilter(filterValue: string) {

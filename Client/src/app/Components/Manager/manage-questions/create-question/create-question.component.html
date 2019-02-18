@@ -1,0 +1,28 @@
+<h1>
+  create-question works!
+</h1>
+<form class="main-continar">
+
+  <mat-checkbox  name='checked' [(ngModel)]="checked">Is Multi Chocie Question</mat-checkbox>
+
+  <mat-form-field>
+    <input matInput placeholder="Question Text">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Text Below">
+  </mat-form-field>
+
+  <div class='answers-continer' *ngFor='let answer of answers'>
+
+    <mat-form-field>
+      <input matInput [(ngModel)]='answer.Title' name='title' placeholder="Type an answer">
+    </mat-form-field>
+
+    <div *ngIf='checked'>
+        <mat-checkbox  name='answer' [(ngModel)]="answer">Is Correct</mat-checkbox>
+    </div>
+  </div>
+
+  <button mat-raised-button type="button" color="primary" (click)='moreQAnswers()'>Add An Answer</button>
+</form>
