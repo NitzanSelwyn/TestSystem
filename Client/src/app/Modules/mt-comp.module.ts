@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import {
   MatButtonModule, MatCardModule, MatToolbarModule, MatInputModule, MatListModule,
   MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatPaginatorModule,MatFormFieldModule,
-  MatOptionModule,MatSelectModule, MatTableModule
+  MatOptionModule,MatSelectModule, MatTableModule,MatRadioModule
 } from '@angular/material';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -16,7 +16,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     exports: [
       MatButtonModule, MatCardModule, MatToolbarModule, MatInputModule, MatListModule, MatCheckboxModule,
       MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatPaginatorModule, MatSliderModule,MatFormFieldModule,
-      MatOptionModule,MatSelectModule,MatProgressSpinnerModule,MatTableModule
+      MatOptionModule,MatSelectModule,MatProgressSpinnerModule,MatTableModule,MatRadioModule
   ], 
 })
 export class MtCompModule { }
