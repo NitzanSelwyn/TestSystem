@@ -3,7 +3,6 @@ const sql = require('mssql');
 const jwt = require('jsonwebtoken')
 const config = require('../Config/config');
 
-
 exports.Login = (req, res) => {
 
   const email = req.body.email;
