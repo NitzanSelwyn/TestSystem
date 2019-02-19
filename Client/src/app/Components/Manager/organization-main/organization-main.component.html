@@ -6,8 +6,8 @@
     </div>
 
     <mat-form-field>
-        <mat-select placeholder="Subject" [(value)]="selectedValue">
-            <mat-option *ngFor="let Subject of Subjects" [value]='Subject.SubjectId' require>
+        <mat-select placeholder="Subject" [(value)]="selectedValue" require>
+            <mat-option *ngFor="let Subject of Subjects" [value]='Subject' require>
                 {{Subject.Name}}
             </mat-option>
         </mat-select>
@@ -16,10 +16,10 @@
 
     <div class="container">
 
-        <button mat-raised-button type="button" color="primary" (click)='selectedSubject(selectedValue)'>Manage
+        <button mat-raised-button type="button" color="primary" (click)='manageQuestionPage(selectedValue)'>Manage
             Questions </button>
 
-        <button mat-raised-button type="button" color="primary">Manage Tests </button>
+        <button mat-raised-button type="button" color="primary" (click)='manageExamPage(selectedValue)'>Manage Tests </button>
 
         <button mat-raised-button type="button" color="primary">Reports </button>
 

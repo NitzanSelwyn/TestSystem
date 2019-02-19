@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { MtCompModule } from './Modules/mt-comp.module';
-import { CreateExamComponent } from './Components/Manager/create-exam/create-exam.component';
+import { CreateExamComponent } from './Components/Manager/manage-exam/create-exam/create-exam.component';
 import { ManagerLoginComponent } from './Components/Manager/manager-login/manager-login.component';
 import { ShowOnDirtyErrorStateMatcher, ErrorStateMatcher } from '@angular/material';
 
@@ -25,6 +25,8 @@ import { LoadingScreenInterceptor } from './Services/loading.interceptor';
 import { LoadingScreenService } from './Services/loading-screen.service';
 import { ManageQuestionsComponent } from './Components/Manager/manage-questions/manage-questions.component';
 import { ShowAnswersComponent } from './Components/Manager/manage-questions/show-answers/show-answers.component';
+import { CreateQuestionComponent } from './Components/Manager/manage-questions/create-question/create-question.component';
+import { ManageExamComponent } from './Components/Manager/manage-exam/manage-exam.component';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import { ShowAnswersComponent } from './Components/Manager/manage-questions/show
     LoadingScreenComponent,
     ManageQuestionsComponent,
     ShowAnswersComponent,
+    CreateQuestionComponent,
+    ManageExamComponent,
 
   ],
   imports: [

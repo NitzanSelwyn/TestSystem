@@ -31,18 +31,23 @@ export class OrganizationMainComponent implements OnInit {
     })
   }
 
-  selectedSubject(subjectid) {
-    if(subjectid == undefined){
+  manageQuestionPage(subject) {
+  
+    if(subject == undefined){
       //TODO show the user a message that he have to chose a subject
       return
     }
-    let subjectname = '';
-    this.Subjects.forEach(element => {
-      if (element.SubjectId == subjectid) {
-        subjectname = element.Name;
-      }
-    });
-    this.router.navigate(['/managequestions',{subjectid:subjectid, subjectname:subjectname,organizationId:this.id}])
+   
+    this.router.navigate(['/managequestions',{subjectid:subject.SubjectId, subjectname:subject.Name,organizationId:this.id}])
+  }
+
+  manageExamPage(subject){
+    if(subject == undefined){
+      //TODO show the user a message that he have to chose a subject
+      return
+    }
+   
+    this.router.navigate(['/manageexam',{subjectid:subject.SubjectId, subjectname:subject.Name,organizationId:this.id}])
   }
 
 }

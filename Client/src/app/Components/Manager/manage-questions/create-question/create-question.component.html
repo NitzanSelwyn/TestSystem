@@ -1,0 +1,52 @@
+<form class="main-continar">
+
+  <mat-checkbox name='checked' [(ngModel)]="checked" (click)='turnAllAnswersToFalse()'>Is Multi Chocie Question
+  </mat-checkbox>
+
+  <mat-checkbox name='Horizantle' [(ngModel)]="Horizantle" (click)='turnAllAnswersToFalse()'>Is Horizantle
+  </mat-checkbox>
+
+  <mat-form-field>
+    <input matInput placeholder="Question Text" name='quextionText' [(ngModel)]="quextionText">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Text Below" name='textBelow' [(ngModel)]="textBelow">
+  </mat-form-field>
+
+  <div *ngFor='let answer of answers; index as i'>
+
+    <div class='answers-continer'>
+
+      <button mat-raised-button type="button" color="warn" (click)='deleteAnswer(i)'>Delete</button>
+
+      <mat-form-field>
+        <input matInput [(ngModel)]='answer.Title' name='title' placeholder="Type an answer">
+      </mat-form-field>
+
+      <div *ngIf='checked'>
+        <mat-checkbox name='subjectid' [(ngModel)]="answer.IsCorrect">Is Correct</mat-checkbox>
+      </div>
+
+      <div *ngIf='!checked'>
+        <mat-radio-button name='subjectid' (click)="selectAnswer(answer)">Is Correct</mat-radio-button>
+      </div>
+
+    </div>
+
+  </div>
+
+  
+  <mat-form-field>
+    <input matInput placeholder="Tags" name='questionTags' [(ngModel)]="questionTags">
+  </mat-form-field>
+
+  <div class='bottom-buttons'>
+    <button mat-raised-button type="button" color="primary" (click)='moreQAnswers()'>Add An Answer</button>
+
+    <button mat-raised-button type="button" color="primary" (click)='AddQuestion()'>Add Question</button>
+
+    <button mat-raised-button type="button" color="primary" (click)='backClicked()'>Back</button>
+  </div>
+
+</form>

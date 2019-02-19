@@ -22,7 +22,12 @@
       <!-- Qustion Column -->
       <ng-container matColumnDef="Qustion">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Qustion </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
+        <mat-cell *matCellDef="let row"> 
+         <p> {{row.Title}} </p>
+        <br>
+         <h4>Tags: {{row.Tags}}</h4>
+        </mat-cell>
+       
       </ng-container>
 
       <!-- Last Update Column -->
@@ -34,23 +39,23 @@
       <!-- Qustion Type Column -->
       <ng-container matColumnDef="QustionType">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Is Multi? </mat-header-cell>
-        <mat-cell *matCellDef="let row" > {{row.IsMultyChoice}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.IsMultyChoice}} </mat-cell>
       </ng-container>
 
       <!-- Number Tests Column -->
       <ng-container matColumnDef="NumberTests">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Number Tests </mat-header-cell>
-        <mat-cell *matCellDef="let row" > Number Tests </mat-cell>
+        <mat-cell *matCellDef="let row"> Number Tests </mat-cell>
       </ng-container>
 
       <!-- Buttons Column -->
       <ng-container matColumnDef="Buttons">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>  </mat-header-cell>
-        <mat-cell *matCellDef="let row" > 
-            <button mat-raised-button type="button" color="primary" (click)='showQuestion(row.QuestionId)'>Show </button>
-            <button mat-raised-button type="button" color="primary">Edit </button>
-            <button mat-raised-button type="button" color="primary">Delete </button>
-           </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-raised-button type="button" color="primary" (click)='showQuestion(row.QuestionId)'>Show </button>
+          <button mat-raised-button type="button" color="primary">Edit </button>
+          <button mat-raised-button type="button" color="primary">Delete </button>
+        </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -59,6 +64,10 @@
     </mat-table>
 
     <mat-paginator [pageSizeOptions]="[2, 10, 25, 100]"></mat-paginator>
+  </div>
+  <div class="lower-buttons">
+    <button mat-raised-button type="button" color="primary" (click)='backClicked()'>Back</button>
+    <button mat-raised-button type="button" color="primary" (click)='moveToCreateQuestion()'>Create New Question</button>
   </div>
 
 </div>

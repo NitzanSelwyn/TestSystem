@@ -9,4 +9,6 @@ const dbPool = new sql.ConnectionPool(config, err =>  {
   console.log('Connected');
 });
 
+
+
 module.exports = dbPool;

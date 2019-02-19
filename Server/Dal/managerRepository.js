@@ -1,13 +1,20 @@
 const dbPool = require('./dbContext');
 const sql = require('mssql');
-const jwt = require('jsonwebtoken')
 const config = require('../Config/config');
 
 
-exports.Login = (req, res) => {
+function convertAnswerListToTable(list) {
+  const table = new sql.Table()
+  table.columns.add('IsCorrect', sql.Bit);
+  table.columns.add('QuestionId', sql.Int);
+  table.columns.add('Title', sql.VarChar(50));
+  for (let i = 0; i < list.length; i++) {
+    table.rows.add(list[i].IsCorrect,list[i].QuestionId,list[i].Title);
+  }
+  return table;
+}
 
-  const email = req.body.email;
-  const password = req.body.password;
+exports.Login = (email, password, callback) => {
 
   const dbReq = dbPool.request();
   dbReq.input('Email', sql.NVarChar(50), email);
@@ -15,22 +22,16 @@ exports.Login = (req, res) => {
 
   dbReq.execute('spLogin', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'Login'");
+      console.log('error', "Execution error calling 'Login'"+ err.message);
     } else {
-
-      jwt.sign(data.recordset[0], config.jwtSecret, (err, token) => {
-        console.log(token);
-        res.send({token:token,user:data.recordset})
-      })
+      callback(data.recordset);
     }
   });
 }
 
-exports.Register = (req, res) => {
+exports.Register = function (email, password, fullName, callback) {
 
-  const email = req.body.email;
-  const password = req.body.password;
-  const fullName = req.body.name
+
   const dbReq = dbPool.request();
 
   dbReq.input('Email', sql.NVarChar(100), email);
@@ -39,17 +40,15 @@ exports.Register = (req, res) => {
 
   dbReq.execute('spRegisterAdmin', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'Register'");
+      console.log('error', "Execution error calling 'Register'"+ err.message);
     } else {
 
-      res.send(data.recordset);
+      callback(data.recordset);
     }
   });
 }
 
-exports.GetManagerOrganizations = (req, res) => {
-
-  const email = req.body.Email;
+exports.GetManagerOrganizations = function (email, calback) {
 
   const dbReq = dbPool.request();
 
@@ -57,33 +56,30 @@ exports.GetManagerOrganizations = (req, res) => {
 
   dbReq.execute('spGetManagerOrganizations', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'Register'");
+      console.log('error', "Execution error calling 'spGetManagerOrganizations'"+ err.message);
     } else {
-
-      res.send(data.recordset);
+      calback(data.recordset);
     }
   });
 }
 
-exports.GetSubjectsByOrganizationId = (req, res) => {
-  const id = req.body.Id;
+exports.GetSubjectsByOrganizationId = function (organizationId, callback) {
 
   const dbReq = dbPool.request();
-  dbReq.input('OrganizationId', sql.Int(), id);
+  dbReq.input('OrganizationId', sql.Int(), organizationId);
 
   dbReq.execute('spGetSubjectsByOrganizationId', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'Register'");
+      console.log('error', "Execution error calling 'spGetSubjectsByOrganizationId'"+ err.message);
     } else {
 
-      res.send(data.recordset);
+      callback(data.recordset);
     }
   });
 }
 
-exports.GetQustionsbySubjectId = (req, res) => {
-  const organizationId = req.body.OrganizationId;
-  const subjectId = req.body.SubjectId;
+exports.GetQustionsbySubjectIdAndOrganizationId = function (subjectId, organizationId, callback) {
+
 
   const dbReq = dbPool.request();
   dbReq.input('SubjectId', sql.Int(), subjectId);
@@ -91,16 +87,15 @@ exports.GetQustionsbySubjectId = (req, res) => {
 
   dbReq.execute('spGetQuestionBySubjectId', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'Register'");
+      console.log('error', "Execution error calling 'spGetQuestionBySubjectId'"+ err.message);
     } else {
 
-      res.send(data.recordset);
+      callback(data.recordset);
     }
   });
 }
 
-exports.GetQuestionsAnswersById = (req,res) =>{
-  const questionId = req.body.Id;
+exports.GetQuestionsAnswersById = function (questionId, callback) {
 
   const dbReq = dbPool.request();
 
@@ -108,10 +103,35 @@ exports.GetQuestionsAnswersById = (req,res) =>{
 
   dbReq.execute('spGetQuestionAnswersByQuestionId', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'Register'");
+      console.log('error', "Execution error calling 'Register'"+ err.message);
     } else {
-      res.send(data.recordset);
+      callback(data.recordset);
     }
   });
 
+}
+
+exports.AddNewQuestion = function(question,answersArr,callback){
+
+  
+  const table = convertAnswerListToTable(answersArr)
+  const dbReq = dbPool.request();
+
+  dbReq.input('Title',question.QuestionText);
+  dbReq.input('TextBelow',question.TextBelow);
+  dbReq.input('IsMultyChoice',question.IsMultiCoice);
+  dbReq.input('SubjectId',question.SubjectId);
+  dbReq.input('CorrectCount',0);
+  dbReq.input('IsHorizontal',question.IsHorizantle);
+  dbReq.input('Tags',question.questionTags);
+  dbReq.input('Answers',table);
+
+  dbReq.execute('spCreateQuestion', (err, data) => {
+    if (err) {
+      console.log('error', "Execution error calling 'spCreateAnswer'"+ err.message);
+      callback(false);
+    } else {
+      callback(true);
+    }
+  });
 }

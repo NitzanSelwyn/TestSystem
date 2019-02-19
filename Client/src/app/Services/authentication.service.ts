@@ -29,7 +29,7 @@ export class AuthenticationService {
     return true;
   }
 
-  GetQuestionAnswersById(id) :Observable<any>{
+  GetQuestionAnswersById(id): Observable<any> {
     return this.http.post<any>('http://localhost:3000/api/manager/GetQuestionsAnswersById', { Id: id })
   }
 
@@ -45,6 +45,10 @@ export class AuthenticationService {
 
   GetQuestionBySubjectId(OrganizationId, SubjectId): Observable<any> {
     return this.http.post<any>('http://localhost:3000/api/manager/GetQustionsbySubjectId', { OrganizationId: OrganizationId, SubjectId: SubjectId });
+  }
+
+  AddNewQuestion(AnswerArr, QuestionDetails) {
+    return this.http.post<any>('http://localhost:3000/api/manager/AddNewQuestion', { Answers: AnswerArr, Question: QuestionDetails });
   }
 
   private GetOptions(token: string) {
