@@ -31,7 +31,7 @@ export class OrganizationMainComponent implements OnInit {
     })
   }
 
-  selectedSubject(subject) {
+  manageQuestionPage(subject) {
   
     if(subject == undefined){
       //TODO show the user a message that he have to chose a subject
@@ -39,6 +39,15 @@ export class OrganizationMainComponent implements OnInit {
     }
    
     this.router.navigate(['/managequestions',{subjectid:subject.SubjectId, subjectname:subject.Name,organizationId:this.id}])
+  }
+
+  manageExamPage(subject){
+    if(subject == undefined){
+      //TODO show the user a message that he have to chose a subject
+      return
+    }
+   
+    this.router.navigate(['/manageexam',{subjectid:subject.SubjectId, subjectname:subject.Name,organizationId:this.id}])
   }
 
 }

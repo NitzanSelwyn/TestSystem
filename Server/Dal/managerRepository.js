@@ -3,7 +3,7 @@ const sql = require('mssql');
 const config = require('../Config/config');
 
 
-const CLTT = function convertAnswerListToTable(list) {
+function convertAnswerListToTable(list) {
   const table = new sql.Table()
   table.columns.add('IsCorrect', sql.Bit);
   table.columns.add('QuestionId', sql.Int);
@@ -22,7 +22,7 @@ exports.Login = (email, password, callback) => {
 
   dbReq.execute('spLogin', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'Login'");
+      console.log('error', "Execution error calling 'Login'"+ err.message);
     } else {
       callback(data.recordset);
     }
@@ -40,7 +40,7 @@ exports.Register = function (email, password, fullName, callback) {
 
   dbReq.execute('spRegisterAdmin', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'Register'");
+      console.log('error', "Execution error calling 'Register'"+ err.message);
     } else {
 
       callback(data.recordset);
@@ -56,7 +56,7 @@ exports.GetManagerOrganizations = function (email, calback) {
 
   dbReq.execute('spGetManagerOrganizations', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'spGetManagerOrganizations'");
+      console.log('error', "Execution error calling 'spGetManagerOrganizations'"+ err.message);
     } else {
       calback(data.recordset);
     }
@@ -70,7 +70,7 @@ exports.GetSubjectsByOrganizationId = function (organizationId, callback) {
 
   dbReq.execute('spGetSubjectsByOrganizationId', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'spGetSubjectsByOrganizationId'");
+      console.log('error', "Execution error calling 'spGetSubjectsByOrganizationId'"+ err.message);
     } else {
 
       callback(data.recordset);
@@ -87,7 +87,7 @@ exports.GetQustionsbySubjectIdAndOrganizationId = function (subjectId, organizat
 
   dbReq.execute('spGetQuestionBySubjectId', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'spGetQuestionBySubjectId'");
+      console.log('error', "Execution error calling 'spGetQuestionBySubjectId'"+ err.message);
     } else {
 
       callback(data.recordset);
@@ -103,7 +103,7 @@ exports.GetQuestionsAnswersById = function (questionId, callback) {
 
   dbReq.execute('spGetQuestionAnswersByQuestionId', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'Register'");
+      console.log('error', "Execution error calling 'Register'"+ err.message);
     } else {
       callback(data.recordset);
     }
@@ -114,7 +114,7 @@ exports.GetQuestionsAnswersById = function (questionId, callback) {
 exports.AddNewQuestion = function(question,answersArr,callback){
 
   
-  const table = CLTT(answersArr)
+  const table = convertAnswerListToTable(answersArr)
   const dbReq = dbPool.request();
 
   dbReq.input('Title',question.QuestionText);

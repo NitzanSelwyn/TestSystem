@@ -22,7 +22,12 @@
       <!-- Qustion Column -->
       <ng-container matColumnDef="Qustion">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Qustion </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
+        <mat-cell *matCellDef="let row"> 
+         <p> {{row.Title}} </p>
+        <br>
+         <h4>Tags: {{row.Tags}}</h4>
+        </mat-cell>
+       
       </ng-container>
 
       <!-- Last Update Column -->

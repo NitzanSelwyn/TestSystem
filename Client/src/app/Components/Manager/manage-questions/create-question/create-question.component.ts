@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { textBinding } from '@angular/core/src/render3';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-create-question',
@@ -20,7 +21,8 @@ export class CreateQuestionComponent implements OnInit {
   quextionText: string;
   questionTags:string;
 
-  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService
+    , private location: Location) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -57,10 +59,18 @@ export class CreateQuestionComponent implements OnInit {
     const question = new Question(this.Horizantle, this.checked, this.quextionText, this.textBelow, this.subjectid,this.questionTags);
 
     this.authService.AddNewQuestion(this.answers, question).subscribe((data) => {
-      console.log(data);
+      if(data == true){
+        this.backClicked();
+      }else{
+        alert("error")
+        this.backClicked();
+      }
     })
   }
 
+  backClicked() {
+    this.location.back();
+  }
 }
 
 export class Answer {
