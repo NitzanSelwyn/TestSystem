@@ -1,15 +1,45 @@
 const repo = require('../../Dal/managerRepository');
 
-exports.ManagerLogin = (res,req) =>{
 
-  const email = req.body.email;
-  const password = req.body.password;
+exports.GetManagerOrganizations = (req, res) => {
 
-   const user = repo.Login(email,password);
-   res.send(user);
+  const email = req.body.Email;
+  repo.GetManagerOrganizations(email, (data) => {
+    res.send(data);
+  });
 
 }
 
-exports.ManagerRegister = () =>{
-    
+exports.GetSubjectsByOrganizationId = (req, res) => {
+
+  const id = req.body.Id;
+  repo.GetSubjectsByOrganizationId(id, (data) => {
+    res.send(data);
+  })
+
+}
+
+exports.GetQustionsbySubjectIdAndOrganizationId = (req, res) => {
+
+  const organizationId = req.body.OrganizationId;
+  const subjectId = req.body.SubjectId;
+
+  repo.GetQustionsbySubjectIdAndOrganizationId(subjectId, organizationId, (data) => {
+    res.send(data);
+  })
+}
+
+exports.GetQuestionsAnswersById = (req, res) => {
+
+  const questionId = req.body.Id;
+  repo.GetQuestionsAnswersById(questionId, (data) => {
+    res.send(data);
+  })
+
+}
+
+
+exports.AddNewQuestion = (req, res) => {
+  let question = req.body.Question
+  repo.AddNewQuestion(question);
 }

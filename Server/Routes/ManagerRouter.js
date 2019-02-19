@@ -11,13 +11,13 @@ router.post('/Login', repo.Login);
 
 router.post('/Register', repo.Register)
 
-router.post('/GetManagerOrganization', repo.GetManagerOrganizations)
+router.post('/GetManagerOrganization', managerController.GetManagerOrganizations)
 
-router.post('/GetSubjectsByOrganizationId', repo.GetSubjectsByOrganizationId)
+router.post('/GetSubjectsByOrganizationId', managerController.GetSubjectsByOrganizationId)
 
-router.post('/GetQustionsbySubjectId', repo.GetQustionsbySubjectId)
+router.post('/GetQustionsbySubjectId', managerController.GetQustionsbySubjectIdAndOrganizationId)
 
-router.post('/GetQuestionsAnswersById', repo.GetQuestionsAnswersById)
+router.post('/GetQuestionsAnswersById', managerController.GetQuestionsAnswersById)
 
 
 
