@@ -1,22 +1,20 @@
 const dbPool = require('./dbContext');
 const sql = require('mssql');
-const jwt = require('jsonwebtoken')
 const config = require('../Config/config');
 
 
-function convertAnswerListToTable(list) {
-  const table = new this.sql.Table();
-  table.columns.add("ID", this.sql.Int);
+const CLTT = function convertAnswerListToTable(list) {
+  const table = new sql.Table()
+  table.columns.add('IsCorrect', sql.Bit);
+  table.columns.add('QuestionId', sql.Int);
+  table.columns.add('Title', sql.VarChar(50));
   for (let i = 0; i < list.length; i++) {
-    table.rows.add(list[i]);
+    table.rows.add(list[i].IsCorrect,list[i].QuestionId,list[i].Title);
   }
   return table;
 }
 
-exports.Login = (req, res) => {
-
-  const email = req.body.email;
-  const password = req.body.password;
+exports.Login = (email, password, callback) => {
 
   const dbReq = dbPool.request();
   dbReq.input('Email', sql.NVarChar(50), email);
@@ -26,20 +24,14 @@ exports.Login = (req, res) => {
     if (err) {
       console.log('error', "Execution error calling 'Login'");
     } else {
-
-      jwt.sign(data.recordset[0], config.jwtSecret, (err, token) => {
-        console.log(token);
-        res.send({ token: token, user: data.recordset })
-      })
+      callback(data.recordset);
     }
   });
 }
 
-exports.Register = (req, res) => {
+exports.Register = function (email, password, fullName, callback) {
 
-  const email = req.body.email;
-  const password = req.body.password;
-  const fullName = req.body.name
+
   const dbReq = dbPool.request();
 
   dbReq.input('Email', sql.NVarChar(100), email);
@@ -51,7 +43,7 @@ exports.Register = (req, res) => {
       console.log('error', "Execution error calling 'Register'");
     } else {
 
-      res.send(data.recordset);
+      callback(data.recordset);
     }
   });
 }
@@ -103,7 +95,7 @@ exports.GetQustionsbySubjectIdAndOrganizationId = function (subjectId, organizat
   });
 }
 
-exports.GetQuestionsAnswersById = function(questionId, callback){
+exports.GetQuestionsAnswersById = function (questionId, callback) {
 
   const dbReq = dbPool.request();
 
@@ -119,20 +111,27 @@ exports.GetQuestionsAnswersById = function(questionId, callback){
 
 }
 
-exports.AddNewQuestion = (question) => {
+exports.AddNewQuestion = function(question,answersArr,callback){
 
-  const table = this.convertAnswerListToTable(question.answers)
+  
+  const table = CLTT(answersArr)
   const dbReq = dbPool.request();
 
+  dbReq.input('Title',question.QuestionText);
+  dbReq.input('TextBelow',question.TextBelow);
+  dbReq.input('IsMultyChoice',question.IsMultiCoice);
+  dbReq.input('SubjectId',question.SubjectId);
+  dbReq.input('CorrectCount',0);
+  dbReq.input('IsHorizontal',question.IsHorizantle);
+  dbReq.input('Tags',question.questionTags);
+  dbReq.input('Answers',table);
 
-
-  dbReq.execute('spCreateAnswer', (err, data) => {
+  dbReq.execute('spCreateQuestion', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'Register'");
-      return false;
+      console.log('error', "Execution error calling 'spCreateAnswer'"+ err.message);
+      callback(false);
     } else {
-      return true;
+      callback(true);
     }
   });
-  return false;
 }

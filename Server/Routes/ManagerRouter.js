@@ -7,9 +7,9 @@ const router = express.Router();
 
 router.use(bodyParser.json());
 
-router.post('/Login', repo.Login);
+router.post('/Login', managerController.Login);
 
-router.post('/Register', repo.Register)
+router.post('/Register', managerController.Register)
 
 router.post('/GetManagerOrganization', managerController.GetManagerOrganizations)
 
@@ -18,6 +18,8 @@ router.post('/GetSubjectsByOrganizationId', managerController.GetSubjectsByOrgan
 router.post('/GetQustionsbySubjectId', managerController.GetQustionsbySubjectIdAndOrganizationId)
 
 router.post('/GetQuestionsAnswersById', managerController.GetQuestionsAnswersById)
+
+router.post('/AddNewQuestion',managerController.AddNewQuestion)
 
 
 
