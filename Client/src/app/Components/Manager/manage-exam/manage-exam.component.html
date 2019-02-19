@@ -1,4 +1,65 @@
 <div class="main-title">
-    <h1>Exam For: </h1>
-    <h1 class="organization">{{subjectname}}</h1>
-  </div>
+  <h1>Exam For: </h1>
+  <h1 class="organization">{{subjectname}}</h1>
+</div>
+
+
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="question-table">
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="ExamId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ExamId </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.ExamId}} </mat-cell>
+    </ng-container>
+
+    <!-- Qustion Column -->
+    <ng-container matColumnDef="Link">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Link </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button>Link</button>
+      </mat-cell>
+
+    </ng-container>
+
+    <!-- Last Update Column -->
+    <ng-container matColumnDef="NumberOfQuestions">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Number Of Questions </mat-header-cell>
+      <mat-cell *matCellDef="let row"> Number Of Questions </mat-cell>
+    </ng-container>
+
+    <!-- Qustion Type Column -->
+    <ng-container matColumnDef="LastUpdate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Last Update </mat-header-cell>
+      <mat-cell *matCellDef="let row"> LastUpdate </mat-cell>
+    </ng-container>
+
+    <!-- Buttons Column -->
+    <ng-container matColumnDef="Buttons">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-raised-button type="button" color="primary">Edit </button>
+          <button mat-raised-button type="button" color="primary">Duplicate </button>
+        </mat-cell>
+      </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[2, 10, 25, 100]"></mat-paginator>
+</div>
+<div class="lower-buttons">
+  <button mat-raised-button type="button" color="primary" (click)='backClicked()'>Back</button>
+  <button mat-raised-button type="button" color="primary" (click)='moveToCreateExam()'>Create New Exam</button>
+</div>
+
+
+<mat-spinner diameter="300" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>

@@ -37,13 +37,13 @@ export class ManageQuestionsComponent implements OnInit {
       this.organizationId = organizationId;
       this.authService.GetQuestionBySubjectId(organizationId, subjectid).subscribe((data) => {
         this.dataSource = new MatTableDataSource(data);
-        this.tryTest();
+        this.SettingData();
         this.showSpinner = false;
       });
     })
   }
 
-  tryTest() {
+  SettingData() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

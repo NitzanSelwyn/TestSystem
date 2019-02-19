@@ -5,3 +5,7 @@
 .organization{
     color: orange;
 }
+.lower-buttons{
+    display: flex;
+    justify-content: space-between;
+}
