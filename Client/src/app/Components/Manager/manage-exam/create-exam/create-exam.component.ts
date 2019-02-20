@@ -21,7 +21,7 @@ export class CreateExamComponent implements OnInit {
     { value: 'English', viewValue: 'English' },
     { value: 'Hebrew', viewValue: 'Hebrew' }
   ]
-  selectedQuestions: number[];;
+  selectedQuestions: number[];
 
   ngOnInit() {
     this.showSpinner = true;
@@ -38,7 +38,6 @@ export class CreateExamComponent implements OnInit {
 
   onQuestionSelect(selectedQuestions: any[]) {
     this.selectedQuestions = selectedQuestions;
-   console.log(this.selectedQuestions);
   }
 }
 
