@@ -12,7 +12,7 @@ import { ShowAnswersComponent } from '../../../manage-questions/show-answers/sho
 export class QuestionsTableComponent implements OnInit {
 
 
-  @Output() select = new EventEmitter();
+  @Output() selectQuestion = new EventEmitter();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @Input() organizationId: string;
@@ -27,7 +27,6 @@ export class QuestionsTableComponent implements OnInit {
   constructor(private authService: AuthenticationService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    console.log(this.organizationId + this.subjectId)
     this.showSpinner = true;
     this.authService.GetQuestionBySubjectId(this.organizationId, this.subjectId).subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
@@ -58,9 +57,9 @@ export class QuestionsTableComponent implements OnInit {
 
   onSelect(row) {
     this.selection.toggle(row);
-    this.select.emit(
+    this.selectQuestion.emit(
       this.selection.selected.map(q => {
-        return q.Id;
+        return q.QuestionId;
       })
     );
   }
@@ -68,7 +67,7 @@ export class QuestionsTableComponent implements OnInit {
 }
 
 export interface Questions {
-  Id: number;
+  QuestionId: number;
   Title: string;
   Tags: string;
   TextBelow: string;

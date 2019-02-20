@@ -7,15 +7,18 @@
 <div class="question-table">
   <mat-table [dataSource]="dataSource" matSort>
 
-      <ng-container matColumnDef="QuestionId">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> QuestionId </mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{row.QuestionId}} </mat-cell>
-        </ng-container>
+    <ng-container matColumnDef="QuestionId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> QuestionId </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.QuestionId}} </mat-cell>
+    </ng-container>
 
     <!-- ID Column -->
     <ng-container matColumnDef="select">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Select </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.select}} </mat-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="onSelect(row)" [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </mat-cell>
     </ng-container>
 
     <!-- Qustion Column -->

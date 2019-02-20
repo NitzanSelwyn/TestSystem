@@ -20,7 +20,8 @@ export class CreateExamComponent implements OnInit {
   Languges: any[] = [
     { value: 'English', viewValue: 'English' },
     { value: 'Hebrew', viewValue: 'Hebrew' }
-  ];
+  ]
+  selectedQuestions: number[];;
 
   ngOnInit() {
     this.showSpinner = true;
@@ -33,6 +34,11 @@ export class CreateExamComponent implements OnInit {
         this.organizationId = organizationId;
     })
     
+  }
+
+  onQuestionSelect(selectedQuestions: any[]) {
+    this.selectedQuestions = selectedQuestions;
+   console.log(this.selectedQuestions);
   }
 }
 

@@ -36,4 +36,5 @@
   </div>
 
 </div>
-<app-questions-table [organizationId]='organizationId' [subjectId]='subjectId'></app-questions-table>
+<app-questions-table [organizationId]='organizationId' [subjectId]='subjectId'
+    (selectQuestion)="onQuestionSelect($event)"></app-questions-table>
