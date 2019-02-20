@@ -53,9 +53,7 @@ export class CreateQuestionComponent implements OnInit {
   }
 
   AddQuestion() {
-    // this.answers.forEach((item) => {
-    //   item.QuestionId = this.organizationId;
-    // })
+
     const question = new Question(this.Horizantle, this.checked, this.quextionText, this.textBelow, this.subjectid,this.questionTags);
 
     this.authService.AddNewQuestion(this.answers, question).subscribe((data) => {

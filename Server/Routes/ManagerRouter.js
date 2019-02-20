@@ -21,6 +21,8 @@ router.post('/GetQuestionsAnswersById', managerController.GetQuestionsAnswersByI
 
 router.post('/AddNewQuestion',managerController.AddNewQuestion)
 
+router.get('/auth/activeAdminAccount',managerController.ActiveAdminAcount)
+
 
 
 

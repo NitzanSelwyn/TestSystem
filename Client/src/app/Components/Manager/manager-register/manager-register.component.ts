@@ -29,9 +29,9 @@ export class ManagerRegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.authService.isAuthenticated) {
-      this.router.navigate(['/managermain'])
-    }
+    // if (this.authService.isAuthenticated) {
+    //   this.router.navigate(['/managermain'])
+    // }
   }
 
 }

@@ -8,6 +8,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
+import { ToastrModule } from 'ngx-toastr';
+
 import { MtCompModule } from './Modules/mt-comp.module';
 import { CreateExamComponent } from './Components/Manager/manage-exam/create-exam/create-exam.component';
 import { ManagerLoginComponent } from './Components/Manager/manager-login/manager-login.component';
@@ -52,6 +54,7 @@ import { ManageExamComponent } from './Components/Manager/manage-exam/manage-exa
     FormsModule,
     MtCompModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot(),
     HttpClientModule
 
   ],

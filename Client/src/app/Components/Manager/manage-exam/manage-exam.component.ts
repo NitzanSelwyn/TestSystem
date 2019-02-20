@@ -60,7 +60,7 @@ displayedColumns = ['ExamId', 'Link', 'NumberOfQuestions', 'LastUpdate', 'Button
   }
 
   moveToCreateExam(){
-    this.router.navigate(['/createexam']);
+    this.router.navigate(['/createexam',{organizationId:this.organizationId,subjectid:this.subjectid,subjectName:this.subjectname}]);
   }
 
 }
