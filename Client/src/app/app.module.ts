@@ -29,6 +29,7 @@ import { ManageQuestionsComponent } from './Components/Manager/manage-questions/
 import { ShowAnswersComponent } from './Components/Manager/manage-questions/show-answers/show-answers.component';
 import { CreateQuestionComponent } from './Components/Manager/manage-questions/create-question/create-question.component';
 import { ManageExamComponent } from './Components/Manager/manage-exam/manage-exam.component';
+import { QuestionsTableComponent } from './Components/Manager/manage-exam/create-exam/questions-table/questions-table.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { ManageExamComponent } from './Components/Manager/manage-exam/manage-exa
     ShowAnswersComponent,
     CreateQuestionComponent,
     ManageExamComponent,
+    QuestionsTableComponent,
 
   ],
   imports: [

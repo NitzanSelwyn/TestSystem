@@ -1,0 +1,42 @@
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="question-table">
+  <mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="QuestionId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> QuestionId </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.QuestionId}} </mat-cell>
+        </ng-container>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Select </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.select}} </mat-cell>
+    </ng-container>
+
+    <!-- Qustion Column -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.Title}}</mat-cell>
+
+    </ng-container>
+
+    <!-- Last Update Column -->
+    <ng-container matColumnDef="show">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Show </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-raised-button type="button" color="primary" (click)='showQuestion(row.QuestionId)'>Show </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[2, 10, 25, 100]"></mat-paginator>
