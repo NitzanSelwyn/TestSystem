@@ -22,16 +22,18 @@ export class ManagerRegisterComponent implements OnInit {
     this.showSpinner = true;
     if (this.password == this.confirmPassword) {
       this.authService.AdminRegiser(this.email, this.password, this.fullName).subscribe((data) => {
-        console.log(data)
+
         this.showSpinner = false;
+        this.router.navigate(['/'])
+
       });
     }
   }
 
   ngOnInit() {
-    if (this.authService.isAuthenticated) {
-      this.router.navigate(['/managermain'])
-    }
+    // if (this.authService.isAuthenticated) {
+    //   this.router.navigate(['/managermain'])
+    // }
   }
 
 }

@@ -51,6 +51,10 @@ export class AuthenticationService {
     return this.http.post<any>('http://localhost:3000/api/manager/AddNewQuestion', { Answers: AnswerArr, Question: QuestionDetails });
   }
 
+  GetTestsBySubjectId():Observable<any>{
+    return this.http.post<any>('http://localhost:3000/api/manager/AddNewQuestion', {  });
+  }
+
   private GetOptions(token: string) {
     return {
       headers: new HttpHeaders

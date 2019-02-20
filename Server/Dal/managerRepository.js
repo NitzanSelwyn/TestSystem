@@ -135,3 +135,18 @@ exports.AddNewQuestion = function(question,answersArr,callback){
     }
   });
 }
+
+exports.ActiveAdminAccount = function(email,callback){
+
+  const dbReq = dbPool.request();
+
+  dbReq.input('Email', sql.VarChar(100), email);
+
+  dbReq.execute('spActivateManagerAccount', (err, data) => {
+    if (err) {
+      console.log('error', "Execution error calling 'Register'"+ err.message);
+    } else {
+      callback(data.recordset);
+    }
+  });
+}

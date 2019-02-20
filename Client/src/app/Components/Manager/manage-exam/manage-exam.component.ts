@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-manage-exam',
@@ -15,7 +17,14 @@ export class ManageExamComponent implements OnInit {
   subjectname: string;
   organizationId: string;
 
-  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService) { }
+displayedColumns = ['ExamId', 'Link', 'NumberOfQuestions', 'LastUpdate', 'Buttons'];
+  dataSource: MatTableDataSource<Tests>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService,
+     private location: Location) { }
 
   ngOnInit() {
     this.showSpinner = true;
@@ -27,7 +36,35 @@ export class ManageExamComponent implements OnInit {
       this.subjectname = name;
       this.organizationId = organizationId;
       this.showSpinner = false;
+
+      // this.authService.GetTestsBySubjectId().subscribe((data) => {
+      //   this.dataSource = new MatTableDataSource(data);
+      //   this.settingData();
+      // })
     })
   }
 
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+
+  settingData() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  backClicked(){
+    this.location.back();
+  }
+
+  moveToCreateExam(){
+    this.router.navigate(['/createexam',{organizationId:this.organizationId,subjectid:this.subjectid,subjectName:this.subjectname}]);
+  }
+
+}
+
+export interface Tests {
+  ExamId: string;
 }

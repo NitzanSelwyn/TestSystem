@@ -8,6 +8,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
+import { ToastrModule } from 'ngx-toastr';
+
 import { MtCompModule } from './Modules/mt-comp.module';
 import { CreateExamComponent } from './Components/Manager/manage-exam/create-exam/create-exam.component';
 import { ManagerLoginComponent } from './Components/Manager/manager-login/manager-login.component';
@@ -27,6 +29,7 @@ import { ManageQuestionsComponent } from './Components/Manager/manage-questions/
 import { ShowAnswersComponent } from './Components/Manager/manage-questions/show-answers/show-answers.component';
 import { CreateQuestionComponent } from './Components/Manager/manage-questions/create-question/create-question.component';
 import { ManageExamComponent } from './Components/Manager/manage-exam/manage-exam.component';
+import { QuestionsTableComponent } from './Components/Manager/manage-exam/create-exam/questions-table/questions-table.component';
 
 
 @NgModule({
@@ -43,6 +46,7 @@ import { ManageExamComponent } from './Components/Manager/manage-exam/manage-exa
     ShowAnswersComponent,
     CreateQuestionComponent,
     ManageExamComponent,
+    QuestionsTableComponent,
 
   ],
   imports: [
@@ -52,6 +56,7 @@ import { ManageExamComponent } from './Components/Manager/manage-exam/manage-exa
     FormsModule,
     MtCompModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot(),
     HttpClientModule
 
   ],
