@@ -1,8 +1,9 @@
-<div class="main-exam">
-  <form class="example-container">
+<form class="example-container" #f="ngForm" (ngSubmit)="submit(f)">
+  <div class='main-exam'>
+
     <mat-form-field>
-      <mat-select placeholder="Languge">
-        <mat-option *ngFor="let Languge of Languges" [value]="Languge.value">
+      <mat-select placeholder="Languge" [(ngModel)]="model.languge">
+        <mat-option *ngFor="let Languge of Languges" [value]="Languge.id">
           {{Languge.viewValue}}
         </mat-option>
       </mat-select>
@@ -29,12 +30,36 @@
     <mat-form-field>
       <input matInput placeholder="Message To Show On Failure">
     </mat-form-field>
-  </form>
 
-  <div class="email-delivery">
-    <h1>asdsasad</h1>
+
+    <div class="email-delivery">
+
+      <mat-checkbox [(ngModel)]='sendEmails' name='sendEmails'>Send Emails</mat-checkbox>
+
+      <mat-form-field>
+        <input matInput placeholder="Email To CC The Email When Sending The User">
+        <mat-hint>You Will Not Recive An Email If You Will Not Fill This Part</mat-hint>
+      </mat-form-field>
+
+      <h4>Passing Grade Email</h4>
+      <mat-form-field>
+        <input matInput placeholder="Passed The Test Email">
+        <mat-hint>Email To Send When The Student Passed The Test</mat-hint>
+      </mat-form-field>
+
+      <h4>Failling Grade Email</h4>
+      <mat-form-field>
+        <input matInput placeholder="Failled The Test Email">
+        <mat-hint>Email To Send When The Student Failled The Test</mat-hint>
+      </mat-form-field>
+
+    </div>
+
   </div>
+  <button class="next-btn" mat-raised-button color="accent" [disabled]="!f.valid">
+    Save
+  </button>
+</form>
 
-</div>
 <app-questions-table [organizationId]='organizationId' [subjectId]='subjectId'
-    (selectQuestion)="onQuestionSelect($event)"></app-questions-table>
+  (selectQuestion)="onQuestionSelect($event)"></app-questions-table>
