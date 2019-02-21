@@ -1,40 +1,79 @@
-<div class="main-exam">
-  <form class="example-container">
+<form class="example-container" #f="ngForm" (ngSubmit)="submit(f)">
+  <div class='main-exam'>
+
     <mat-form-field>
-      <mat-select placeholder="Languge">
-        <mat-option *ngFor="let Languge of Languges" [value]="Languge.value">
+      <mat-select placeholder="Languge" #languge [(ngModel)]='model.languge' [ngModelOptions]="{standalone: true}" >
+        <mat-option *ngFor="let Languge of Languges" [value]="Languge.id">
           {{Languge.viewValue}}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Test Name">
+      <input matInput placeholder="Test Name" name='testName' #testName='ngModel' [(ngModel)]="model.testName" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Passing Grade">
+      <input matInput placeholder="Passing Grade" [(ngModel)]='model.passingGrade' #passingGrade='ngModel' [ngModelOptions]="{standalone: true}">
     </mat-form-field>
 
-    <mat-checkbox>Show Correct Answer After Submition</mat-checkbox>
+    <mat-checkbox [(ngModel)]='model.showCorrectAnswerAfterSubmmishion'
+    #showCorrectAnswerAfterSubmmishion='ngModel' [ngModelOptions]="{standalone: true}"
+    >Show Correct Answer After Submition</mat-checkbox>
 
     <mat-form-field>
-      <input matInput placeholder="Header">
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Message To Show On Succsess">
+      <input matInput placeholder="Header" [(ngModel)]='model.header' #header='ngModel'  [ngModelOptions]="{standalone: true}" >
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Message To Show On Failure">
+      <input matInput placeholder="Message To Show On Succsess" [(ngModel)]='model.messageToShowOnSuccess' 
+      #messageToShowOnSuccess='ngModel'  [ngModelOptions]="{standalone: true}">
     </mat-form-field>
-  </form>
 
-  <div class="email-delivery">
-    <h1>asdsasad</h1>
+    <mat-form-field>
+      <input matInput placeholder="Message To Show On Failure" 
+       [ngModelOptions]="{standalone: true}" [(ngModel)]='model.messageToShowOnFailliure'
+       #messageToShowOnFailliure='ngModel'
+       >
+    </mat-form-field>
+
+
+    <div class="email-delivery">
+
+      <mat-checkbox [(ngModel)]='model.sendEmails' #sendEmails='ngModel' name='sendEmails'
+      [ngModelOptions]="{standalone: true}"
+      >Send Emails</mat-checkbox>
+
+      <mat-form-field>
+        <input matInput placeholder="Email To CC The Email When Sending The User"
+        [(ngModel)]='model.emailToCC' #emailToCC='ngModel'
+          [ngModelOptions]="{standalone: true}">
+        <mat-hint>You Will Not Recive An Email If You Will Not Fill This Part</mat-hint>
+      </mat-form-field>
+
+      <h4>Passing Grade Email</h4>
+      <mat-form-field>
+        <input matInput placeholder="Passed The Test Email" 
+        [(ngModel)]='model.passingMessageBody' #passingMessageBody='ngModel'
+         [ngModelOptions]="{standalone: true}">
+        <mat-hint>Email To Send When The Student Passed The Test</mat-hint>
+      </mat-form-field>
+
+      <h4>Failling Grade Email</h4>
+      <mat-form-field>
+        <input matInput placeholder="Failled The Test Email"
+        [(ngModel)]='model.failingMessageBody' #failingMessageBody='ngModel'
+          [ngModelOptions]="{standalone: true}">
+        <mat-hint>Email To Send When The Student Failled The Test</mat-hint>
+      </mat-form-field>
+
+    </div>
+
   </div>
+  <button class="next-btn" mat-raised-button color="accent" [disabled]="!f.valid">
+    Save
+  </button>
+</form>
 
-</div>
 <app-questions-table [organizationId]='organizationId' [subjectId]='subjectId'
-    (selectQuestion)="onQuestionSelect($event)"></app-questions-table>
+  (selectQuestion)="onQuestionSelect($event)"></app-questions-table>

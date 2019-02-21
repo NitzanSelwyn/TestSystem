@@ -1,20 +1,21 @@
 .example-container {
-    display: flex;
-    flex-direction: column;
-
-    flex-flow: column;
-    justify-items: center;
-    background-color: blanchedalmond;
-  }
-
-  .main-exam{
-      display: flex;
+  display: flex;
+  flex-direction: column;
+  flex-flow: column;
+  justify-items: center;
+  background-color: blanchedalmond;
   }
 
   .email-delivery{
     display: flex;
-    align-items: center;
     flex-direction: column;
-    padding-left: 40px;
+    flex-flow: column;
+    justify-items: center;
     background-color: aqua;
+  }
+  .main-exam{
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+    justify-items: center;
   }
