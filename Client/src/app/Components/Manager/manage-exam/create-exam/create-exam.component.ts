@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventEmitter } from 'protractor';
 import { CreateTest } from 'src/app/Models/createTest';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-exam',
@@ -17,7 +18,8 @@ export class CreateExamComponent implements OnInit {
   subjectId: string;
   organizationId: string;
   model: CreateTest = new CreateTest;
-  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService,
+    private toast: ToastrService) { }
 
   Languges: any[] = [
     { id: 1, viewValue: 'English' },
@@ -40,9 +42,10 @@ export class CreateExamComponent implements OnInit {
   submit(form:NgForm){
     if(form.valid){
       if (!this.selectedQuestions) {
-        alert('NO');
+        this.toast.warning('you must chooce at list 1 question','hello')
         return;
       }
+      alert('function to send to DB')
     }
   }
   onQuestionSelect(selectedQuestions: any[]) {

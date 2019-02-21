@@ -7,3 +7,7 @@ display: grid;
 padding-left: 15%;
 padding-right: 15%;
 }
+
+#toast-container > div {
+    opacity:1;
+}
