@@ -23,7 +23,9 @@ router.post('/AddNewQuestion',managerController.AddNewQuestion)
 
 router.get('/auth/activeAdminAccount',managerController.ActiveAdminAcount)
 
+router.post('/GetExamsBySubjectId', managerController.GetExamsBySubjectId)
 
+router.post('/AddNewExam', managerController.AddNewExam)
 
 
 module.exports = router;

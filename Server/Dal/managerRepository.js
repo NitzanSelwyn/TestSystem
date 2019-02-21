@@ -14,6 +14,15 @@ function convertAnswerListToTable(list) {
   return table;
 }
 
+function convertQuestionIdListToTable(list){
+  const table = new sql.Table()
+  table.columns.add('ID', sql.Int);
+  for (let i = 0; i < list.length; i++) {
+    table.rows.add(list[i]);
+  }
+  return table;
+}
+
 exports.Login = (email, password, callback) => {
 
   const dbReq = dbPool.request();
@@ -147,6 +156,44 @@ exports.ActiveAdminAccount = function(email,callback){
       console.log('error', "Execution error calling 'Register'"+ err.message);
     } else {
       callback(data.recordset);
+    }
+  });
+}
+
+exports.GetExamsBySubjectId = function(OrganizationId, SubjectId,callback){
+
+}
+
+exports.AddNewExam = function(exam,questionList,callback){
+
+
+  const dbReq = dbPool.request();
+  const table = convertQuestionIdListToTable(questionList)
+
+  dbReq.input('Name',exam.name);
+  dbReq.input('OpenningText',exam.openningText);
+  dbReq.input('SubjectId',exam.subjectId);
+  dbReq.input('Language',exam.language);
+  dbReq.input('OrgenaizerEmail',exam.organizerEmail);
+  dbReq.input('PassingGrade',exam.passingGrade);
+  dbReq.input('SuccessText',exam.successText);
+  dbReq.input('FailText',exam.failText);
+  dbReq.input('CertificateUrl',exam.certificateUrl);
+  dbReq.input('ShowAnswer',exam.showAnswer);
+  dbReq.input('SuccessMailSubject',exam.SuccessMailSubject);
+  dbReq.input('SuccessMailBody',exam.SuccessMailBody);
+  dbReq.input('FailMailSubject',exam.FailMailSubject);
+  dbReq.input('FailMailBody',exam.FailMailBody);
+  dbReq.input('SendEmail',exam.SendEmail);
+  dbReq.input('QuestionsIds',table);
+
+
+  dbReq.execute('spCreateExam', (err, data) => {
+    if (err) {
+      console.log('error', "Execution error calling 'spCreateAnswer'"+ err.message);
+      callback(false);
+    } else {
+      callback(data);
     }
   });
 }
