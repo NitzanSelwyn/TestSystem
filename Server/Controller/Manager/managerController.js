@@ -113,8 +113,9 @@ exports.GetExamsBySubjectId = (req,es) =>{
 exports.AddNewExam = (req,res) =>{
 
   const exam = req.body.exam
+  const questionArr = req.body.selectedQuestions
 
-  repo.AddNewExam(exam,(data)=>{
+  repo.AddNewExam(exam,questionArr,(data)=>{
     res.send(data)
   })
 }

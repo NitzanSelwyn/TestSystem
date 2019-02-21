@@ -55,8 +55,8 @@ export class AuthenticationService {
     return this.http.post<any>('http://localhost:3000/api/manager/GetExamsBySubjectId', { OrganizationId: OrganizationId, SubjectId: SubjectId });
   }
 
-  AddNewExam(exam) {
-    return this.http.post<any>('http://localhost:3000/api/manager/AddNewExam', { exam: exam });
+  AddNewExam(exam,selectedQuestions) {
+    return this.http.post<any>('http://localhost:3000/api/manager/AddNewExam', { exam: exam , selectedQuestions:selectedQuestions});
   }
 
   private GetOptions(token: string) {
