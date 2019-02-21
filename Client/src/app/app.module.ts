@@ -3,7 +3,7 @@ import { AppRoutingModule } from './Modules/app-routing.module';
 import { AppComponent } from './app.component';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -31,6 +31,7 @@ import { CreateQuestionComponent } from './Components/Manager/manage-questions/c
 import { ManageExamComponent } from './Components/Manager/manage-exam/manage-exam.component';
 import { QuestionsTableComponent } from './Components/Manager/manage-exam/create-exam/questions-table/questions-table.component';
 
+import { AppErrorHandler } from './Helper/error-handle';
 
 @NgModule({
   declarations: [
@@ -56,11 +57,15 @@ import { QuestionsTableComponent } from './Components/Manager/manage-exam/create
     FormsModule,
     MtCompModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right'
+    }),
     HttpClientModule
 
   ],
   providers: [
+    // { provide: ErrorHandler, useClass: AppErrorHandler },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingScreenInterceptor, multi: true },
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
     AuthenticationService,
