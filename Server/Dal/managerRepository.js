@@ -166,7 +166,6 @@ exports.GetExamsBySubjectId = function(OrganizationId, SubjectId,callback){
 
 exports.AddNewExam = function(exam,questionList,callback){
 
-
   const dbReq = dbPool.request();
   const table = convertQuestionIdListToTable(questionList)
 

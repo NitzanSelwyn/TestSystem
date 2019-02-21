@@ -2,8 +2,8 @@
   <div class='main-exam'>
 
     <mat-form-field>
-      <mat-select placeholder="Languge" #languge [(ngModel)]='model.languge' [ngModelOptions]="{standalone: true}" required >
-        <mat-option *ngFor="let Languge of Languges" [value]="Languge.id">
+      <mat-select placeholder="Languge" #languge [(ngModel)]='model.language' [ngModelOptions]="{standalone: true}" required >
+        <mat-option *ngFor="let Languge of Languges" [value]="Languge.Language">
           {{Languge.viewValue}}
         </mat-option>
       </mat-select>

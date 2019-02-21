@@ -22,8 +22,8 @@ export class CreateExamComponent implements OnInit {
     private toast: ToastrService) { }
 
   Languges: any[] = [
-    { id: 1, viewValue: 'English' },
-    { id: 2, viewValue: 'Hebrew' }
+    { Language: 'English', viewValue: 'English' },
+    { Language: 'Hebrew', viewValue: 'Hebrew' }
   ]
   selectedQuestions: number[];
 
