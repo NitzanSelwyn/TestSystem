@@ -167,6 +167,9 @@ exports.GetExamsBySubjectId = function(OrganizationId, SubjectId,callback){
 exports.AddNewExam = function(exam,questionList,callback){
 
   const dbReq = dbPool.request();
+  const transaction = new sql.Transaction(dbPool)
+
+
   const table = convertQuestionIdListToTable(questionList)
 
   dbReq.input('Name',exam.name);
@@ -185,6 +188,21 @@ exports.AddNewExam = function(exam,questionList,callback){
   dbReq.input('FailMailBody',exam.FailMailBody);
   dbReq.input('SendEmail',exam.SendEmail);
   dbReq.input('QuestionsIds',table);
+
+  // transaction.begin((err)=>{
+  //   dbReq.execute('spCreateExam', (err, data) => {
+  //     if (err) {
+  //       console.log('error', "Execution error calling 'spCreateAnswer'"+ err.message);
+  //       callback(false);
+  //     } else {
+  //       transaction.commit((err,recordset)=>{
+
+  //       })
+  //       // callback(data);
+  //     }
+  //   });
+  // })
+
 
 
   dbReq.execute('spCreateExam', (err, data) => {
