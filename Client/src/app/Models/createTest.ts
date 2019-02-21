@@ -7,6 +7,7 @@ export class CreateTest{
     messageToShowOnSuccess:string;
     messageToShowOnFailliure:string;
     sendEmaillWhenComplete:boolean;
+    emailToCC:string
     passingMessageSubject: string;
     passingMessageBody: string;
     failingMessageSubject: string;

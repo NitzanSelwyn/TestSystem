@@ -3,6 +3,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventEmitter } from 'protractor';
 import { CreateTest } from 'src/app/Models/createTest';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-create-exam',
@@ -15,7 +16,7 @@ export class CreateExamComponent implements OnInit {
   subjectname: string;
   subjectId: string;
   organizationId: string;
-  model: CreateTest;
+  model: CreateTest = new CreateTest;
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService) { }
 
   Languges: any[] = [
@@ -36,7 +37,14 @@ export class CreateExamComponent implements OnInit {
     })
 
   }
-
+  submit(form:NgForm){
+    if(form.valid){
+      if (!this.selectedQuestions) {
+        alert('NO');
+        return;
+      }
+    }
+  }
   onQuestionSelect(selectedQuestions: any[]) {
     this.selectedQuestions = selectedQuestions;
   }
