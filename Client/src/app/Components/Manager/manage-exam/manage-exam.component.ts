@@ -17,7 +17,7 @@ export class ManageExamComponent implements OnInit {
   subjectname: string;
   organizationId: string;
 
-displayedColumns = ['ExamId', 'Link', 'NumberOfQuestions', 'LastUpdate', 'Buttons'];
+displayedColumns = ['Name', 'Link', 'NumberOfQuestions', 'Buttons'];
   dataSource: MatTableDataSource<Tests>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -35,12 +35,13 @@ displayedColumns = ['ExamId', 'Link', 'NumberOfQuestions', 'LastUpdate', 'Button
       this.subjectid = subjectid;
       this.subjectname = name;
       this.organizationId = organizationId;
-      this.showSpinner = false;
 
-      // this.authService.GetTestsBySubjectId().subscribe((data) => {
-      //   this.dataSource = new MatTableDataSource(data);
-      //   this.settingData();
-      // })
+      this.authService.GetTestsBySubjectId(organizationId,subjectid).subscribe((data) => {
+        console.log(data);
+        this.showSpinner = false;
+        this.dataSource = new MatTableDataSource(data);
+        this.settingData();
+      })
     })
   }
 
