@@ -22,8 +22,8 @@ export class CreateExamComponent implements OnInit {
     private toast: ToastrService) { }
 
   Languges: any[] = [
-    { id: 1, viewValue: 'English' },
-    { id: 2, viewValue: 'Hebrew' }
+    { Language: 'English', viewValue: 'English' },
+    { Language: 'Hebrew', viewValue: 'Hebrew' }
   ]
   selectedQuestions: number[];
 
@@ -39,13 +39,16 @@ export class CreateExamComponent implements OnInit {
     })
 
   }
-  submit(form:NgForm){
-    if(form.valid){
+  submit(form: NgForm) {
+    if (form.valid) {
       if (!this.selectedQuestions) {
-        this.toast.warning('you must chooce at list 1 question','hello')
+        this.toast.warning('you must chooce at list 1 question', 'hello')
         return;
       }
-      alert('function to send to DB')
+      this.model.subjectId = parseInt(this.subjectId);
+      this.authService.AddNewExam(this.model, this.selectedQuestions).subscribe((data) => {
+        console.log(data);
+      })
     }
   }
   onQuestionSelect(selectedQuestions: any[]) {

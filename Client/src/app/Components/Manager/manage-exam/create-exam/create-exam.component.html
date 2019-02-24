@@ -2,38 +2,38 @@
   <div class='main-exam'>
 
     <mat-form-field>
-      <mat-select placeholder="Languge" #languge [(ngModel)]='model.languge' [ngModelOptions]="{standalone: true}" required >
-        <mat-option *ngFor="let Languge of Languges" [value]="Languge.id">
+      <mat-select placeholder="Languge" #languge [(ngModel)]='model.language' [ngModelOptions]="{standalone: true}" required >
+        <mat-option *ngFor="let Languge of Languges" [value]="Languge.Language">
           {{Languge.viewValue}}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Test Name" name='testName' #testName='ngModel' [(ngModel)]="model.testName" required [ngModelOptions]="{standalone: true}">
+      <input matInput placeholder="Test Name" name='name' #name='ngModel' [(ngModel)]="model.name" required [ngModelOptions]="{standalone: true}">
     </mat-form-field>
 
     <mat-form-field>
       <input matInput placeholder="Passing Grade" [(ngModel)]='model.passingGrade' #passingGrade='ngModel' required [ngModelOptions]="{standalone: true}">
     </mat-form-field>
 
-    <mat-checkbox [(ngModel)]='model.showCorrectAnswerAfterSubmmishion'
-    #showCorrectAnswerAfterSubmmishion='ngModel' [ngModelOptions]="{standalone: true}" 
+    <mat-checkbox [(ngModel)]='model.showAnswer'
+    #showAnswer='ngModel' [ngModelOptions]="{standalone: true}" 
     >Show Correct Answer After Submition</mat-checkbox>
 
-    <mat-form-field>
+    <!-- <mat-form-field>
       <input matInput placeholder="Header" [(ngModel)]='model.header' #header='ngModel' required  [ngModelOptions]="{standalone: true}" >
-    </mat-form-field>
+    </mat-form-field> -->
 
     <mat-form-field>
-      <input matInput placeholder="Message To Show On Succsess" [(ngModel)]='model.messageToShowOnSuccess' 
-      #messageToShowOnSuccess='ngModel'  [ngModelOptions]="{standalone: true}" required>
+      <input matInput placeholder="Message To Show On Succsess" [(ngModel)]='model.successText' 
+      #successText='ngModel' name='successText' [ngModelOptions]="{standalone: true}" required>
     </mat-form-field>
 
     <mat-form-field>
       <input matInput placeholder="Message To Show On Failure" 
-       [ngModelOptions]="{standalone: true}" [(ngModel)]='model.messageToShowOnFailliure' required
-       #messageToShowOnFailliure='ngModel'
+       [ngModelOptions]="{standalone: true}" [(ngModel)]='model.failText' name='failText' required
+       #failText='ngModel'
        >
     </mat-form-field>
 
@@ -46,24 +46,36 @@
 
       <mat-form-field>
         <input matInput placeholder="Email To CC The Email When Sending The User"
-        [(ngModel)]='model.emailToCC' #emailToCC='ngModel'
+        [(ngModel)]='model.organizerEmail' #organizerEmail='ngModel'
           [ngModelOptions]="{standalone: true}" [disabled]='!model.sendEmails' required='!model.sendEmails'>
         <mat-hint>You Will Not Recive An Email If You Will Not Fill This Part</mat-hint>
       </mat-form-field>
 
       <h4>Passing Grade Email</h4>
       <mat-form-field>
-        <input matInput placeholder="Passed The Test Email" 
-        [(ngModel)]='model.passingMessageBody' #passingMessageBody='ngModel'
+          <input matInput placeholder="Passed The Test Email Subject"  
+          [(ngModel)]='model.SuccessMailSubject' #SuccessMailSubject='ngModel'
+           [ngModelOptions]="{standalone: true}" name='SuccessMailSubject' [disabled]='!model.sendEmails'>
+          <mat-hint>Email To Send When The Student Passed The Test</mat-hint>
+        </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Passed The Test Email Body"  
+        [(ngModel)]='model.passingMessageBody' #SuccessMailBody='ngModel'
          [ngModelOptions]="{standalone: true}" [disabled]='!model.sendEmails'>
         <mat-hint>Email To Send When The Student Passed The Test</mat-hint>
       </mat-form-field>
 
       <h4>Failling Grade Email</h4>
       <mat-form-field>
+          <input matInput placeholder="Failled The Test Email subject"
+          [(ngModel)]='model.FailMailSubject' #FailMailSubject='ngModel'
+            [ngModelOptions]="{standalone: true}" name='FailMailSubject' [disabled]='!model.sendEmails'>
+          <mat-hint>Email To Send When The Student Failled The Test</mat-hint>
+        </mat-form-field>
+      <mat-form-field>
         <input matInput placeholder="Failled The Test Email"
         [(ngModel)]='model.failingMessageBody' #failingMessageBody='ngModel'
-          [ngModelOptions]="{standalone: true}" [disabled]='!model.sendEmails'>
+          [ngModelOptions]="{standalone: true}" name='FailMailBody' [disabled]='!model.sendEmails'>
         <mat-hint>Email To Send When The Student Failled The Test</mat-hint>
       </mat-form-field>
 

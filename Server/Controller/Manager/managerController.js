@@ -93,11 +93,29 @@ exports.GetQuestionsAnswersById = (req, res) => {
 
 exports.AddNewQuestion = (req, res) => {
 
-
   const question = req.body.Question
   const answers = req.body.Answers
 
   repo.AddNewQuestion(question, answers, (data) => {
     res.send(data);
   });
+}
+
+exports.GetExamsBySubjectId = (req,es) =>{
+  const organizationId = req.body.OrganizationId;
+  const subjectId = req.body.SubjectId;
+
+  repo.GetExamsBySubjectId(organizationId,subjectId,(data)=>{
+    res.send(data);
+  })
+}
+
+exports.AddNewExam = (req,res) =>{
+
+  const exam = req.body.exam
+  const questionArr = req.body.selectedQuestions
+
+  repo.AddNewExam(exam,questionArr,(data)=>{
+    res.send(data)
+  })
 }

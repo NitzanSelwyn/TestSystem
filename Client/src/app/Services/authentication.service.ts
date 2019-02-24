@@ -51,8 +51,12 @@ export class AuthenticationService {
     return this.http.post<any>('http://localhost:3000/api/manager/AddNewQuestion', { Answers: AnswerArr, Question: QuestionDetails });
   }
 
-  GetTestsBySubjectId():Observable<any>{
-    return this.http.post<any>('http://localhost:3000/api/manager/AddNewQuestion', {  });
+  GetTestsBySubjectId(OrganizationId, SubjectId): Observable<any> {
+    return this.http.post<any>('http://localhost:3000/api/manager/GetExamsBySubjectId', { OrganizationId: OrganizationId, SubjectId: SubjectId });
+  }
+
+  AddNewExam(exam,selectedQuestions) {
+    return this.http.post<any>('http://localhost:3000/api/manager/AddNewExam', { exam: exam , selectedQuestions:selectedQuestions});
   }
 
   private GetOptions(token: string) {
