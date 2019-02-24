@@ -32,6 +32,7 @@ import { ManageExamComponent } from './Components/Manager/manage-exam/manage-exa
 import { QuestionsTableComponent } from './Components/Manager/manage-exam/create-exam/questions-table/questions-table.component';
 
 import { AppErrorHandler } from './Helper/error-handle';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { AppErrorHandler } from './Helper/error-handle';
       timeOut: 10000,
       positionClass: 'toast-bottom-right'
     }),
-    HttpClientModule
+    HttpClientModule,
+    ClipboardModule
 
   ],
   providers: [

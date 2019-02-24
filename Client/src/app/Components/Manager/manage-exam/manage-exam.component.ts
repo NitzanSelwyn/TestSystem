@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import {Location} from '@angular/common';
+import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-manage-exam',
@@ -24,7 +25,7 @@ displayedColumns = ['Name', 'Link', 'NumberOfQuestions', 'Buttons'];
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService,
-     private location: Location) { }
+     private location: Location,private _clipboardService: ClipboardService) { }
 
   ngOnInit() {
     this.showSpinner = true;
@@ -58,6 +59,10 @@ displayedColumns = ['Name', 'Link', 'NumberOfQuestions', 'Buttons'];
 
   backClicked(){
     this.location.back();
+  }
+
+  copyToClipbord(id){
+    this._clipboardService.copyFromContent('lcoalhost:4200/test/' + id)
   }
 
   moveToCreateExam(){
