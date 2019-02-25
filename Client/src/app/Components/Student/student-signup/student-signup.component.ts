@@ -20,6 +20,7 @@ export class StudentSignupComponent implements OnInit {
     })
   }
 
+  
   signUp() {
     alert(this.testId)
   }
