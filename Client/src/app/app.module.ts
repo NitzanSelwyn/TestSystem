@@ -33,6 +33,7 @@ import { QuestionsTableComponent } from './Components/Manager/manage-exam/create
 
 import { AppErrorHandler } from './Helper/error-handle';
 import { ClipboardModule } from 'ngx-clipboard';
+import { StudentSignupComponent } from './Components/Student/student-signup/student-signup.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ClipboardModule } from 'ngx-clipboard';
     CreateQuestionComponent,
     ManageExamComponent,
     QuestionsTableComponent,
+    StudentSignupComponent,
 
   ],
   imports: [
