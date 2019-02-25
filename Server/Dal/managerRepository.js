@@ -162,6 +162,21 @@ exports.ActiveAdminAccount = function(email,callback){
 
 exports.GetExamsBySubjectId = function(OrganizationId, SubjectId,callback){
 
+  const dbReq = dbPool.request();
+
+
+  dbReq.input('OrganizationId',OrganizationId);
+  dbReq.input('SubjectId',SubjectId);
+
+  dbReq.execute('spGetExamByOrganizationIdAndSubjectId', (err, data) => {
+    if (err) {
+      console.log('error', "Execution error calling 'spCreateAnswer'"+ err.message);
+      callback(false);
+    } else {
+      callback(data.recordset);
+    }
+  });
+  
 }
 
 exports.AddNewExam = function(exam,questionList,callback){
@@ -210,7 +225,7 @@ exports.AddNewExam = function(exam,questionList,callback){
       console.log('error', "Execution error calling 'spCreateAnswer'"+ err.message);
       callback(false);
     } else {
-      callback(data);
+      callback(data.recordset);
     }
   });
 }

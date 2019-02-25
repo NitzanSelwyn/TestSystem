@@ -101,7 +101,7 @@ exports.AddNewQuestion = (req, res) => {
   });
 }
 
-exports.GetExamsBySubjectId = (req,es) =>{
+exports.GetExamsBySubjectId = (req,res) =>{
   const organizationId = req.body.OrganizationId;
   const subjectId = req.body.SubjectId;
 

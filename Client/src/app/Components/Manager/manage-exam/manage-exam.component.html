@@ -13,17 +13,18 @@
 <div class="question-table">
   <mat-table [dataSource]="dataSource" matSort>
 
-    <!-- ID Column -->
-    <ng-container matColumnDef="ExamId">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> ExamId </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.ExamId}} </mat-cell>
-    </ng-container>
+
+
+    <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.Name}} </mat-cell>
+      </ng-container>
 
     <!-- Qustion Column -->
     <ng-container matColumnDef="Link">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Link </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button>Link</button>
+          <button mat-raised-button type="button" color="primary"  (click)='copyToClipbord(row.TestId)'>COPY </button>
       </mat-cell>
 
     </ng-container>
@@ -31,13 +32,7 @@
     <!-- Last Update Column -->
     <ng-container matColumnDef="NumberOfQuestions">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Number Of Questions </mat-header-cell>
-      <mat-cell *matCellDef="let row"> Number Of Questions </mat-cell>
-    </ng-container>
-
-    <!-- Qustion Type Column -->
-    <ng-container matColumnDef="LastUpdate">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Last Update </mat-header-cell>
-      <mat-cell *matCellDef="let row"> LastUpdate </mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.NumberOfQuestions}} </mat-cell>
     </ng-container>
 
     <!-- Buttons Column -->
