@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'managequestions', component: ManageQuestionsComponent },
   { path: 'createquestion', component: CreateQuestionComponent },
   { path: 'manageexam', component: ManageExamComponent },
-  { path: 'test', component: StudentSignupComponent },
+  { path: 'test/signup', component: StudentSignupComponent },
 ];
 
 @NgModule({

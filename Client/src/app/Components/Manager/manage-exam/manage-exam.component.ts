@@ -62,7 +62,7 @@ displayedColumns = ['Name', 'Link', 'NumberOfQuestions', 'Buttons'];
   }
 
   copyToClipbord(id){
-    this._clipboardService.copyFromContent('lcoalhost:4200/test;id=' + id)
+    this._clipboardService.copyFromContent('http://localhost:4200/test/signup;id=' + id)
   }
 
   moveToCreateExam(){
