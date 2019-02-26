@@ -12,6 +12,7 @@ export class StudentSignupComponent implements OnInit {
 
   user = new User();
   testId:string;
+  userTestId:string;
 
   constructor(private router: Router,private route: ActivatedRoute, private authService: AuthenticationService ) { }
   ngOnInit() {
@@ -24,7 +25,7 @@ export class StudentSignupComponent implements OnInit {
   
   signUp() {
     this.authService.StudentSignup(this.user,this.testId).subscribe((data)=>{
-      console.log(data);
+      this.userTestId = data[0][0].testId;
     })
   }
 
