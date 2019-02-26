@@ -26,6 +26,7 @@ export class StudentSignupComponent implements OnInit {
   signUp() {
     this.authService.StudentSignup(this.user,this.testId).subscribe((data)=>{
       this.userTestId = data[0][0].testId;
+      this.router.navigate(['/test',{testId:this.testId,userTestId:this.userTestId}])
     })
   }
 

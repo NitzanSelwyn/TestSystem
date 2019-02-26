@@ -10,4 +10,6 @@ router.use(bodyParser.json());
 
 router.post('/signup', studentController.signup);
 
+router.post('/test', studentController.getStudentTest);
+
 module.exports = router;

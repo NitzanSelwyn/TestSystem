@@ -20,3 +20,16 @@ exports.signup = function(student,testId,callback){
         }
       });
 }
+
+exports.getStudentTest = function(testId,callback){
+  const dbReq = dbPool.request();
+  dbReq.input('ExamId',  testId);
+
+  dbReq.execute('spGetStudentTest', (err, data) => {
+      if (err) {
+        console.log('error', "Execution error calling 'Login'"+ err.message);
+      } else {
+        callback(data.recordsets);
+      }
+    });
+}
