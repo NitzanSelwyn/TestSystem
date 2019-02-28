@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-student-test',
@@ -26,7 +25,7 @@ export class StudentTestComponent implements OnInit {
      this.authService.StudentTest(this.testId).subscribe((data)=>{
        this.exam = data;
        this.questions = data.questions
-      console.log(this.questions)
+      console.log(data)
      })
     })
   }
