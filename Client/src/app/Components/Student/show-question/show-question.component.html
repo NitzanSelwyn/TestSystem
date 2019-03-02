@@ -1,3 +1,9 @@
-<p>
-  show-question works!
-</p>
+<h4>{{question.textBelow}}</h4>
+<div *ngFor="let item of question.answers">
+    <div *ngIf="question.isMultyChoice">
+        <mat-checkbox>{{item.Title}}</mat-checkbox>
+    </div>
+    <div *ngIf="!question.isMultyChoice">
+        <mat-radio-button>{{item.Title}}</mat-radio-button>
+    </div>
+</div>

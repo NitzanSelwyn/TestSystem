@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-student-test',
@@ -9,12 +10,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class StudentTestComponent implements OnInit {
 
-  studentTestId:string;
-  testId:string;
+  studentTestId: string;
+  testId: string;
   questions = [];
-  exam:any;
+  exam: any;
+  questionIndex = 0;
 
-  constructor(private router: Router,private route: ActivatedRoute, private authService: AuthenticationService) { }
+
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService,
+    private toast: ToastrService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -22,12 +26,30 @@ export class StudentTestComponent implements OnInit {
       const testId = params.get('testId');
       this.testId = testId;
       this.studentTestId = studentTestId;
-     this.authService.StudentTest(this.testId).subscribe((data)=>{
-       this.exam = data;
-       this.questions = data.questions
-      console.log(data)
-     })
+      this.authService.StudentTest(this.testId).subscribe((data) => {
+        this.exam = data;
+        this.questions = data.questions
+        console.log(data)
+      })
     })
+  }
+
+  nextQuestion(){
+    if (this.questionIndex == this.questions.length -1) {
+      this.toast.warning('Last question', 'hello')
+      return;
+    }else{
+      this.questionIndex += 1;
+    }
+  }
+
+  beforeQuestion(){
+    if (this.questionIndex == 0) {
+      this.toast.warning('First Question', 'hello')
+      return;
+    }else{
+      this.questionIndex -= 1;
+    }
   }
 
 }
