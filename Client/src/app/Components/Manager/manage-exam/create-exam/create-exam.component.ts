@@ -18,14 +18,14 @@ export class CreateExamComponent implements OnInit {
   subjectId: string;
   organizationId: string;
   model: CreateTest = new CreateTest;
-  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService,
-    private toast: ToastrService) { }
-
   Languges: any[] = [
     { Language: 'English', viewValue: 'English' },
     { Language: 'Hebrew', viewValue: 'Hebrew' }
   ]
   selectedQuestions: number[];
+
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService,
+    private toast: ToastrService) { }
 
   ngOnInit() {
     this.showSpinner = true;

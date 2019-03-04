@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { ClipboardService } from 'ngx-clipboard';
 import { ToastrService } from 'ngx-toastr';
 
@@ -19,14 +19,14 @@ export class ManageExamComponent implements OnInit {
   subjectname: string;
   organizationId: string;
 
-displayedColumns = ['Name', 'Link', 'NumberOfQuestions', 'Buttons'];
+  displayedColumns = ['Name', 'Link', 'NumberOfQuestions', 'Buttons'];
   dataSource: MatTableDataSource<Tests>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService,
-     private location: Location,private _clipboardService: ClipboardService,private toast: ToastrService) { }
+    private location: Location, private _clipboardService: ClipboardService, private toast: ToastrService) { }
 
   ngOnInit() {
     this.showSpinner = true;
@@ -38,7 +38,7 @@ displayedColumns = ['Name', 'Link', 'NumberOfQuestions', 'Buttons'];
       this.subjectname = name;
       this.organizationId = organizationId;
 
-      this.authService.GetTestsBySubjectId(organizationId,subjectid).subscribe((data) => {
+      this.authService.GetTestsBySubjectId(organizationId, subjectid).subscribe((data) => {
         console.log(data);
         this.showSpinner = false;
         this.dataSource = new MatTableDataSource(data);
@@ -58,17 +58,17 @@ displayedColumns = ['Name', 'Link', 'NumberOfQuestions', 'Buttons'];
     this.dataSource.sort = this.sort;
   }
 
-  backClicked(){
+  backClicked() {
     this.location.back();
   }
 
-  copyToClipbord(id){
+  copyToClipbord(id) {
     this._clipboardService.copyFromContent('http://localhost:4200/test/signup;id=' + id)
-    this.toast.success('URL Copied To Clipboard', 'hello')      
+    this.toast.success('URL Copied To Clipboard', 'hello')
   }
 
-  moveToCreateExam(){
-    this.router.navigate(['/createexam',{organizationId:this.organizationId,subjectid:this.subjectid,subjectName:this.subjectname}]);
+  moveToCreateExam() {
+    this.router.navigate(['/createexam', { organizationId: this.organizationId, subjectid: this.subjectid, subjectName: this.subjectname }]);
   }
 
 }

@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { textBinding } from '@angular/core/src/render3';
 import {Location} from '@angular/common';
+import { Question } from 'src/app/Models/question';
+import { Answer } from 'src/app/Models/answer';
 
 @Component({
   selector: 'app-create-question',
@@ -53,7 +55,6 @@ export class CreateQuestionComponent implements OnInit {
   }
 
   AddQuestion() {
-
     const question = new Question(this.Horizantle, this.checked, this.quextionText, this.textBelow, this.subjectid,this.questionTags);
 
     this.authService.AddNewQuestion(this.answers, question).subscribe((data) => {
@@ -71,27 +72,5 @@ export class CreateQuestionComponent implements OnInit {
   }
 }
 
-export class Answer {
-  IsCorrect: boolean;
-  QuestionId: string;
-  Title: string;
-}
 
-export class Question {
-  constructor(isHorizantle, isMultiCoice, questionText, textBelow, subjectId,questionTags) {
-    this.IsHorizantle = isHorizantle;
-    this.IsMultiCoice = isMultiCoice;
-    this.QuestionText = questionText;
-    this.TextBelow = textBelow;
-    this.SubjectId = subjectId;
-    this.QuestionTags = questionTags;
-  }
 
-  public IsHorizantle: boolean;
-  public IsMultiCoice: boolean;
-  public QuestionText: string;
-  public TextBelow: string;
-  public SubjectId: string;
-  public QuestionTags:string;
-  
-}
