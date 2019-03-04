@@ -1,6 +1,7 @@
 const dbPool = require('./dbContext');
 const sql = require('mssql');
 const config = require('../Config/config');
+const chalk = require('chalk');
 
 
 exports.signup = function(student,testId,callback){
@@ -14,7 +15,7 @@ exports.signup = function(student,testId,callback){
 
     dbReq.execute('spStudenLogin', (err, data) => {
         if (err) {
-          console.log('error', "Execution error calling 'Login'"+ err.message);
+          console.log(chalk.red(`Execution error calling 'signup'`, err.message));
         } else {
           callback(data.recordsets);
         }
@@ -27,7 +28,7 @@ exports.getStudentTest = function(testId,callback){
 
   dbReq.execute('spGetStudentTest', (err, data) => {
       if (err) {
-        console.log('error', "Execution error calling 'Login'"+ err.message);
+        console.log(chalk.red(`Execution error calling 'getStudentTest'`, err.message));
       } else {
         callback(data.recordsets);
       }
