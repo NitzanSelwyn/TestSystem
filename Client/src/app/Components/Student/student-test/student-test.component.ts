@@ -15,6 +15,7 @@ export class StudentTestComponent implements OnInit {
   questions = [];
   exam: any;
   questionIndex = 0;
+  answersArr = [];
 
 
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService,
@@ -32,6 +33,11 @@ export class StudentTestComponent implements OnInit {
         console.log(data)
       })
     })
+  }
+
+  test(question){
+    this.answersArr.push(question);
+    console.log(this.answersArr)
   }
 
   nextQuestion(){

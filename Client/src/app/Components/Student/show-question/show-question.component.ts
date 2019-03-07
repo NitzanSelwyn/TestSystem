@@ -1,22 +1,22 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { Answer } from 'src/app/Models/answer';
-import { Question } from 'src/app/Models/question';
-import { EventEmitter } from 'events';
+import { Component, OnInit, Input, Output } from "@angular/core";
+import { EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-show-question',
-  templateUrl: './show-question.component.html',
-  styleUrls: ['./show-question.component.css']
+  selector: "app-show-question",
+  templateUrl: "./show-question.component.html",
+  styleUrls: ["./show-question.component.css"]
 })
 export class ShowQuestionComponent implements OnInit {
 
-
   @Input() question: any;
-  @Output()  selectedAnswers = new EventEmitter();
+  @Output() selectedAnswers = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+    this.question.answers.forEach(item => {
+      item.Selected = false;
+    });
   }
 
   selectAnswer(id) {
@@ -27,11 +27,22 @@ export class ShowQuestionComponent implements OnInit {
         item.Selected = false;
       }
     });
+    this.emitSelectedAnswers();
   }
 
-  emitSelectedAnswers(){
+  Selectchange(){
+    // this.question.answers.forEach(item => {
+    //   if (item.AnswerId === id) {
+    //     item.Selected = true;
+    //   } else {
+    //     item.Selected = false;
+    //   }
+    // });
+    this.emitSelectedAnswers();
+  }
+
+  emitSelectedAnswers() {
     const answers = this.question.answers;
-    this.selectedAnswers.emit(answers);
+    this.selectedAnswers.emit(answers)
   }
 }
-

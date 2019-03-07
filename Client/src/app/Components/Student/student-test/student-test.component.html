@@ -3,9 +3,9 @@
 
 
 <div>
-    <app-show-question [question]='questions[questionIndex]'></app-show-question>
+    <app-show-question [question]='questions[questionIndex]' (selectedAnswers)="test($event)"></app-show-question>
 </div>
 <div class="buttons">
-    <button mat-raised-button type="button" color="primary" (click)='beforeQuestion()'>Before</button>
+    <button mat-raised-button type="button" color="primary"  (click)='beforeQuestion()'>Before</button>
     <button mat-raised-button type="button" color="primary" (click)='nextQuestion()'> Next</button>
 </div>
