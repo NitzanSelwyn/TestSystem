@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Answer } from 'src/app/Models/answer';
 import { Question } from 'src/app/Models/question';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-show-question',
@@ -11,7 +12,7 @@ export class ShowQuestionComponent implements OnInit {
 
 
   @Input() question: any;
-  answers: AnswerTest[] = [];
+  @Output()  selectedAnswers = new EventEmitter();
 
   constructor() { }
 
@@ -19,21 +20,18 @@ export class ShowQuestionComponent implements OnInit {
   }
 
   selectAnswer(id) {
-    this.answers.forEach(item => {
+    this.question.answers.forEach(item => {
       if (item.AnswerId === id) {
         item.Selected = true;
       } else {
         item.Selected = false;
       }
     });
-
-    console.log(this.answers)
   }
 
+  emitSelectedAnswers(){
+    const answers = this.question.answers;
+    this.selectedAnswers.emit(answers);
+  }
 }
 
-export class AnswerTest {
-  AnswerId: number;
-  QuestionId: number;
-  Selected:boolean;
-}
