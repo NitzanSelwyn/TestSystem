@@ -1,0 +1,11 @@
+.main-title{
+    display: flex;
+    flex-direction: row;
+}
+.organization{
+    color: orange;
+}
+.lower-buttons{
+    display: flex;
+    justify-content: space-between;
+}

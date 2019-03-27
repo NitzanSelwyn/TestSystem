@@ -1,0 +1,75 @@
+<div>
+  <div class="main-title">
+    <h1>Questions For: </h1>
+    <h1 class="organization">{{subjectname}}</h1>
+  </div>
+
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <div class="question-table">
+    <mat-table [dataSource]="dataSource" matSort>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="QuestionId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> QuestionId </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.QuestionId}} </mat-cell>
+      </ng-container>
+
+      <!-- Qustion Column -->
+      <ng-container matColumnDef="Qustion">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Qustion </mat-header-cell>
+        <mat-cell *matCellDef="let row"> 
+         <p> {{row.Title}} </p>
+        <br>
+         <h4>Tags: {{row.Tags}}</h4>
+        </mat-cell>
+       
+      </ng-container>
+
+      <!-- Last Update Column -->
+      <ng-container matColumnDef="LastUpdate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Last Update </mat-header-cell>
+        <mat-cell *matCellDef="let row"> Last Update </mat-cell>
+      </ng-container>
+
+      <!-- Qustion Type Column -->
+      <ng-container matColumnDef="QustionType">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Is Multi? </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.IsMultyChoice}} </mat-cell>
+      </ng-container>
+
+      <!-- Number Tests Column -->
+      <ng-container matColumnDef="NumberTests">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Number Tests </mat-header-cell>
+        <mat-cell *matCellDef="let row"> Number Tests </mat-cell>
+      </ng-container>
+
+      <!-- Buttons Column -->
+      <ng-container matColumnDef="Buttons">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-raised-button type="button" color="primary" (click)='showQuestion(row.QuestionId)'>Show </button>
+          <button mat-raised-button type="button" color="primary">Edit </button>
+          <button mat-raised-button type="button" color="primary">Delete </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[2, 10, 25, 100]"></mat-paginator>
+  </div>
+  <div class="lower-buttons">
+    <button mat-raised-button type="button" color="primary" (click)='backClicked()'>Back</button>
+    <button mat-raised-button type="button" color="primary" (click)='moveToCreateQuestion()'>Create New Question</button>
+  </div>
+
+</div>
+
+<mat-spinner diameter="300" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>

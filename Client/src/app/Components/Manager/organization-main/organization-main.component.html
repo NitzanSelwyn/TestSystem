@@ -1,0 +1,31 @@
+<div *ngIf='!showSpinner'>
+
+    <div class="main-title">
+        <h1>Organization Name: </h1>
+        <h1 class="organization">{{organizationName}}</h1>
+    </div>
+
+    <mat-form-field>
+        <mat-select placeholder="Subject" [(value)]="selectedValue" require>
+            <mat-option *ngFor="let Subject of Subjects" [value]='Subject' require>
+                {{Subject.Name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <div class="container">
+
+        <button mat-raised-button type="button" color="primary" (click)='manageQuestionPage(selectedValue)'>Manage
+            Questions </button>
+
+        <button mat-raised-button type="button" color="primary" (click)='manageExamPage(selectedValue)'>Manage Tests </button>
+
+        <button mat-raised-button type="button" color="primary">Reports </button>
+
+    </div>
+
+</div>
+
+
+<mat-spinner diameter="300" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>

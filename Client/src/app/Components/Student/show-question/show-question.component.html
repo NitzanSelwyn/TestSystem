@@ -1,0 +1,9 @@
+<h4>{{question.textBelow}}</h4>
+<div *ngFor="let item of question.answers">
+    <div *ngIf="question.isMultyChoice">
+        <mat-checkbox (change)='Selectchange()' [(ngModel)]="item.Selected" >{{item.Title}}</mat-checkbox>
+    </div>
+    <div *ngIf="!question.isMultyChoice">
+        <mat-radio-button [value]="item.AnswerId" (click)="selectAnswer(item.AnswerId)">{{item.Title}}</mat-radio-button>
+    </div>
+</div>

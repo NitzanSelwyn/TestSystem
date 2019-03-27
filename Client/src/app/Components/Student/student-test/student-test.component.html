@@ -1,0 +1,11 @@
+<h1>{{exam.name}}</h1>
+<p>{{exam.openingText}}</p>
+
+
+<div>
+    <app-show-question [question]='questions[questionIndex]' (selectedAnswers)="test($event)"></app-show-question>
+</div>
+<div class="buttons">
+    <button mat-raised-button type="button" color="primary"  (click)='beforeQuestion()'>Before</button>
+    <button mat-raised-button type="button" color="primary" (click)='nextQuestion()'> Next</button>
+</div>

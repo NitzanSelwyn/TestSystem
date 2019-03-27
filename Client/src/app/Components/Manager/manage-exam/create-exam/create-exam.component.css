@@ -1,0 +1,21 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  flex-flow: column;
+  justify-items: center;
+  background-color: blanchedalmond;
+  }
+
+  .email-delivery{
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+    justify-items: center;
+    background-color: aqua;
+  }
+  .main-exam{
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+    justify-items: center;
+  }

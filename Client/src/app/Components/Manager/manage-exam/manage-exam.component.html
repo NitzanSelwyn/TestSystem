@@ -1,0 +1,60 @@
+<div class="main-title">
+  <h1>Exam For: </h1>
+  <h1 class="organization">{{subjectname}}</h1>
+</div>
+
+
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="question-table">
+  <mat-table [dataSource]="dataSource" matSort>
+
+
+
+    <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.Name}} </mat-cell>
+      </ng-container>
+
+    <!-- Qustion Column -->
+    <ng-container matColumnDef="Link">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Link </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+          <button mat-raised-button type="button" color="primary"  (click)='copyToClipbord(row.TestId)'>COPY </button>
+      </mat-cell>
+
+    </ng-container>
+
+    <!-- Last Update Column -->
+    <ng-container matColumnDef="NumberOfQuestions">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Number Of Questions </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.NumberOfQuestions}} </mat-cell>
+    </ng-container>
+
+    <!-- Buttons Column -->
+    <ng-container matColumnDef="Buttons">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-raised-button type="button" color="primary">Edit </button>
+          <button mat-raised-button type="button" color="primary">Duplicate </button>
+        </mat-cell>
+      </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[2, 10, 25, 100]"></mat-paginator>
+</div>
+<div class="lower-buttons">
+  <button mat-raised-button type="button" color="primary" (click)='backClicked()'>Back</button>
+  <button mat-raised-button type="button" color="primary" (click)='moveToCreateExam()'>Create New Exam</button>
+</div>
+
+
+<mat-spinner diameter="300" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
