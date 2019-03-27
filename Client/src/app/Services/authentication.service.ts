@@ -59,6 +59,13 @@ export class AuthenticationService {
     return this.http.post<any>('http://localhost:3000/api/manager/AddNewExam', { exam: exam , selectedQuestions:selectedQuestions});
   }
 
+  StudentSignup(student,testId){
+    return this.http.post<any>('http://localhost:3000/api/student/signup', { student: student , testId:testId});
+  }
+  StudentTest(testId):Observable<any>{
+    return this.http.post<any>('http://localhost:3000/api/student/test', { testId:testId});
+  }
+
   private GetOptions(token: string) {
     return {
       headers: new HttpHeaders

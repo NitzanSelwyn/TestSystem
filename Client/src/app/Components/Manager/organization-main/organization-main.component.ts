@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-organization-main',
@@ -15,7 +16,8 @@ export class OrganizationMainComponent implements OnInit {
   Subjects: any[];
   selectedValue: any;
 
-  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService,
+    private toast: ToastrService) { }
 
   ngOnInit() {
     this.showSpinner = true;
@@ -34,7 +36,7 @@ export class OrganizationMainComponent implements OnInit {
   manageQuestionPage(subject) {
   
     if(subject == undefined){
-      //TODO show the user a message that he have to chose a subject
+      this.toast.warning('you must chooce a subject', 'hello')
       return
     }
    
@@ -43,7 +45,7 @@ export class OrganizationMainComponent implements OnInit {
 
   manageExamPage(subject){
     if(subject == undefined){
-      //TODO show the user a message that he have to chose a subject
+      this.toast.warning('you must chooce a subject', 'hello')      
       return
     }
    

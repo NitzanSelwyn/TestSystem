@@ -1,6 +1,7 @@
 const dbPool = require('./dbContext');
 const sql = require('mssql');
 const config = require('../Config/config');
+const chalk = require('chalk');
 
 
 function convertAnswerListToTable(list) {
@@ -31,7 +32,7 @@ exports.Login = (email, password, callback) => {
 
   dbReq.execute('spLogin', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'Login'"+ err.message);
+      console.log(chalk.red(`Execution error calling 'Login'`, err.message));
     } else {
       callback(data.recordset);
     }
@@ -49,7 +50,8 @@ exports.Register = function (email, password, fullName, callback) {
 
   dbReq.execute('spRegisterAdmin', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'Register'"+ err.message);
+      console.log(chalk.red(`Execution error calling 'Register'`, err.message));
+      
     } else {
 
       callback(data.recordset);
@@ -65,7 +67,8 @@ exports.GetManagerOrganizations = function (email, calback) {
 
   dbReq.execute('spGetManagerOrganizations', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'spGetManagerOrganizations'"+ err.message);
+      console.log(chalk.red(`Execution error calling 'GetManagerOrganizations'`, err.message));
+      
     } else {
       calback(data.recordset);
     }
@@ -79,7 +82,8 @@ exports.GetSubjectsByOrganizationId = function (organizationId, callback) {
 
   dbReq.execute('spGetSubjectsByOrganizationId', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'spGetSubjectsByOrganizationId'"+ err.message);
+      console.log(chalk.red(`Execution error calling 'GetSubjectsByOrganizationId'`, err.message));
+      
     } else {
 
       callback(data.recordset);
@@ -96,7 +100,8 @@ exports.GetQustionsbySubjectIdAndOrganizationId = function (subjectId, organizat
 
   dbReq.execute('spGetQuestionBySubjectId', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'spGetQuestionBySubjectId'"+ err.message);
+      console.log(chalk.red(`Execution error calling 'GetQustionsbySubjectIdAndOrganizationId'`, err.message));
+
     } else {
 
       callback(data.recordset);
@@ -112,7 +117,8 @@ exports.GetQuestionsAnswersById = function (questionId, callback) {
 
   dbReq.execute('spGetQuestionAnswersByQuestionId', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'Register'"+ err.message);
+      console.log(chalk.red(`Execution error calling 'GetQuestionsAnswersById'`, err.message));
+      
     } else {
       callback(data.recordset);
     }
@@ -137,7 +143,8 @@ exports.AddNewQuestion = function(question,answersArr,callback){
 
   dbReq.execute('spCreateQuestion', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'spCreateAnswer'"+ err.message);
+      console.log(chalk.red(`Execution error calling 'AddNewQuestion'`, err.message));
+
       callback(false);
     } else {
       callback(true);
@@ -153,7 +160,7 @@ exports.ActiveAdminAccount = function(email,callback){
 
   dbReq.execute('spActivateManagerAccount', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'Register'"+ err.message);
+      console.log(chalk.red(`Execution error calling 'ActiveAdminAccount'`, err.message));
     } else {
       callback(data.recordset);
     }
@@ -170,7 +177,8 @@ exports.GetExamsBySubjectId = function(OrganizationId, SubjectId,callback){
 
   dbReq.execute('spGetExamByOrganizationIdAndSubjectId', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'spCreateAnswer'"+ err.message);
+      console.log(chalk.red(`Execution error calling 'GetExamsBySubjectId'`, err.message));
+
       callback(false);
     } else {
       callback(data.recordset);
@@ -204,25 +212,9 @@ exports.AddNewExam = function(exam,questionList,callback){
   dbReq.input('SendEmail',exam.SendEmail);
   dbReq.input('QuestionsIds',table);
 
-  // transaction.begin((err)=>{
-  //   dbReq.execute('spCreateExam', (err, data) => {
-  //     if (err) {
-  //       console.log('error', "Execution error calling 'spCreateAnswer'"+ err.message);
-  //       callback(false);
-  //     } else {
-  //       transaction.commit((err,recordset)=>{
-
-  //       })
-  //       // callback(data);
-  //     }
-  //   });
-  // })
-
-
-
   dbReq.execute('spCreateExam', (err, data) => {
     if (err) {
-      console.log('error', "Execution error calling 'spCreateAnswer'"+ err.message);
+      console.log(chalk.red(`Execution error calling 'AddNewExam'`, err.message));
       callback(false);
     } else {
       callback(data.recordset);

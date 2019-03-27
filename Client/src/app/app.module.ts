@@ -34,6 +34,8 @@ import { QuestionsTableComponent } from './Components/Manager/manage-exam/create
 import { AppErrorHandler } from './Helper/error-handle';
 import { ClipboardModule } from 'ngx-clipboard';
 import { StudentSignupComponent } from './Components/Student/student-signup/student-signup.component';
+import { StudentTestComponent } from './Components/Student/student-test/student-test.component';
+import { ShowQuestionComponent } from './Components/Student/show-question/show-question.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { StudentSignupComponent } from './Components/Student/student-signup/stud
     ManageExamComponent,
     QuestionsTableComponent,
     StudentSignupComponent,
+    StudentTestComponent,
+    ShowQuestionComponent,
 
   ],
   imports: [

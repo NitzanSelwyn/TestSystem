@@ -9,6 +9,7 @@ import { ManageQuestionsComponent } from '../Components/Manager/manage-questions
 import { CreateQuestionComponent } from '../Components/Manager/manage-questions/create-question/create-question.component';
 import { ManageExamComponent } from '../Components/Manager/manage-exam/manage-exam.component';
 import { StudentSignupComponent } from '../Components/Student/student-signup/student-signup.component';
+import { StudentTestComponent } from '../Components/Student/student-test/student-test.component';
 
 const routes: Routes = [
   { path: 'managerregister', component: ManagerRegisterComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'managequestions', component: ManageQuestionsComponent },
   { path: 'createquestion', component: CreateQuestionComponent },
   { path: 'manageexam', component: ManageExamComponent },
-  { path: 'test', component: StudentSignupComponent },
+  { path: 'test/signup', component: StudentSignupComponent },
+  { path: 'test', component: StudentTestComponent },
 ];
 
 @NgModule({

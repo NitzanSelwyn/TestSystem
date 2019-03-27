@@ -2,7 +2,7 @@ const repo = require('../../Dal/managerRepository');
 const jwt = require('jsonwebtoken')
 const mailer = require('../../Helper/mailer')
 const config = require('../../Config/config')
-
+const chalk = require('chalk');
 
 exports.Login = (req, res) => {
 
@@ -14,7 +14,7 @@ exports.Login = (req, res) => {
       res.send(data);
     } else {
       jwt.sign(data[0], config.jwtSecret, (err, token) => {
-        console.log('check')
+        console.log(chalk.green('OK'))
         res.send({ token: token, user: data });
       })
     }
